@@ -311,7 +311,7 @@ function MutiRollDice(DiceToCal,timesNum,text){
                 }
             }
         }
-    countStr = countStr + count + '；';
+    countStr = countStr + count + '、';
 }
   countStr = countStr.substring(0, countStr.length - 1) ;
   return countStr;
@@ -339,9 +339,9 @@ function MutiRollDice(DiceToCal,timesNum,text){
           }
         }
       }
-      countStr = countStr + count + '；';
+      countStr = countStr + count + '、';
     }
-    countStr = countStr + text;
+    countStr = countStr.substring(0, countStr.length - 1) + '；' + text;
     return countStr;
   }
   

@@ -13,9 +13,9 @@ var options = {
   headers: {
     'Content-Type': 'application/json',
     //巴獸
-    //'Authorization': 'Bearer EA1/i9foINj2mS/xle59b1Jv9IWtjW8KImFrcG6iE2tUVBld6p13eyZXJrTjYYcw60U8LAXyrQ+fcuBW2V+Lo8mKJ7LtwsUex2diCcDXObgEME8gm3vTvZ7ZaYobjJL9E7L6UdsTujp7VSJwZq9PDwdB04t89/1O/w1cDnyilFU='
+    'Authorization': 'Bearer EA1/i9foINj2mS/xle59b1Jv9IWtjW8KImFrcG6iE2tUVBld6p13eyZXJrTjYYcw60U8LAXyrQ+fcuBW2V+Lo8mKJ7LtwsUex2diCcDXObgEME8gm3vTvZ7ZaYobjJL9E7L6UdsTujp7VSJwZq9PDwdB04t89/1O/w1cDnyilFU='
     //自用
-    'Authorization': 'Bearer 5jaJz9O+Kf3hFiQSRD3LxFdBW6MNlJDoOZDgADH91+TFRw5fYoeLV1g3yDWt0ePExIygLzmvdkL0RRAAqbWhulZtkQuVVRuMRvgl1g/QqFAPkmJlwAyFDwewx3fgqpbNIGnmnVr9w7KZdfpmvfFI7AdB04t89/1O/w1cDnyilFU='
+    //'Authorization': 'Bearer 5jaJz9O+Kf3hFiQSRD3LxFdBW6MNlJDoOZDgADH91+TFRw5fYoeLV1g3yDWt0ePExIygLzmvdkL0RRAAqbWhulZtkQuVVRuMRvgl1g/QqFAPkmJlwAyFDwewx3fgqpbNIGnmnVr9w7KZdfpmvfFI7AdB04t89/1O/w1cDnyilFU='
   
   }
 }
@@ -141,12 +141,13 @@ function parseInput(rplyToken, inputStr) {
 總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
 \n要多筆輸出就是先空一格再打像是 *5 之類的。  \
 \n不要打成大寫D，不要逼我嗆你';
-          if (inputStr.split(msgSplitor).length == 3){
+          if (inputStr.split(msgSplitor).length >= 3){
             
             if (mainMsg[2].split('*').length == 2) {
               let tempArr = mainMsg[2].split('*');
-               //secCommand = parseInt(tempArr[1]);
-              return MutiRollDice(mainMsg[1],parseInt(tempArr[1]));
+              let text = inputStr.split(msgSplitor)[3];
+              //secCommand = parseInt(tempArr[1]);
+              return MutiRollDice(mainMsg[1],parseInt(tempArr[1]),text);
             }
             return NomalRollDice(mainMsg[1],mainMsg[2]);
           }
@@ -278,7 +279,7 @@ function ArrMax (Arr){
   return max;
 }
         
-function MutiRollDice(DiceToCal,timesNum){
+function MutiRollDice(DiceToCal,timesNum,text){
   let cuntSplitor = '+';
   let comSplitor = 'd';
   let CuntArr = DiceToCal.split(cuntSplitor);
@@ -288,6 +289,7 @@ function MutiRollDice(DiceToCal,timesNum){
   let countStr = '';
   if (DiceToCal.match('D') != null) return randomReply() + '\n格式錯啦，d要小寫！';
   
+  if (text == null) {
   for (let j = 1 ; j <= timesNum ; j++){
     count = 0;
       for (let i = 0; i <= numMax; i++) {
@@ -313,7 +315,37 @@ function MutiRollDice(DiceToCal,timesNum){
 }
   countStr = countStr.substring(0, countStr.length - 1) ;
   return countStr;
+  }
+  
+  if (text != null) {
+    for (let j = 1 ; j <= timesNum ; j++){
+      count = 0;
+      for (let i = 0; i <= numMax; i++) {
 
+        let commandArr = CuntArr[i].split(comSplitor);
+        let countOfNum = commandArr[0];
+        let randomRange = commandArr[1];
+        if (randomRange == null) {
+          let temp = parseInt(countOfNum);
+          //countStr = countStr + temp + '+';
+          count += temp; 
+        }
+        else{
+
+          for (let idx = 1; idx <= countOfNum; idx ++) {
+            let temp = Dice(randomRange);
+            //countStr = countStr + temp + '+';
+            count += temp; 
+          }
+        }
+      }
+      countStr = countStr + count + '；';
+    }
+    countStr = countStr + text;
+    return countStr;
+  }
+  
+  
 }        
         
         

@@ -13,9 +13,9 @@ var options = {
   headers: {
     'Content-Type': 'application/json',
     //無限巴獸
-    //'Authorization': 'Bearer clKhNpvJvd4ifWzx0mXWshAlnzEHY9JhMBcxM6kJLghlj+A9uIxSNI1xXxFBtCfTZvr6DcSDUdt/8tLEcgr55ugvWEriHkqt04kML02hm4yEJ1Eym7WZWWbq3hrzhb0S41PCFmvCji7EgsToaR8QFAdB04t89/1O/w1cDnyilFU='
+    'Authorization': 'Bearer clKhNpvJvd4ifWzx0mXWshAlnzEHY9JhMBcxM6kJLghlj+A9uIxSNI1xXxFBtCfTZvr6DcSDUdt/8tLEcgr55ugvWEriHkqt04kML02hm4yEJ1Eym7WZWWbq3hrzhb0S41PCFmvCji7EgsToaR8QFAdB04t89/1O/w1cDnyilFU='
     //新無限巴獸
-    'Authorization': 'Bearer N5nOPFYb0S61vE2By6PBSDZkHvh0ssvnHuC3sYugu26BiZjsDLv1lqK2XSBsOhVVUl4hoAKu1b9vBU6X9bMVvWcw9ENcx/WySkN7Rsf8oaJuaUPvzS2aJyMom7Ww34LYQEj6YH4p1/JvM5HW0MyddAdB04t89/1O/w1cDnyilFU='
+    //'Authorization': 'Bearer N5nOPFYb0S61vE2By6PBSDZkHvh0ssvnHuC3sYugu26BiZjsDLv1lqK2XSBsOhVVUl4hoAKu1b9vBU6X9bMVvWcw9ENcx/WySkN7Rsf8oaJuaUPvzS2aJyMom7Ww34LYQEj6YH4p1/JvM5HW0MyddAdB04t89/1O/w1cDnyilFU='
     
   }
 }
@@ -101,63 +101,14 @@ function parseInput(rplyToken, inputStr) {
           return isNaN(parseInt(obj));
         }                   
         //鴨霸獸指令開始於此
-        if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return randomReply() + '\n' + '\
-總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
-\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
-\n不要打成大寫D，不要逼我嗆你 \
-\n如果是CoC系的話，有初步支援cc擲骰了，獎懲骰也支援了。 \
-';
-        if (inputStr.match('鴨霸獸') != null) return randomReply() ;
-        
-        //cc指令開始於此
-        if (inputStr.split('=')[0] == 'cc<') 
-        {
-          let cctext = null;
-          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
-          return coc7(parseInt(inputStr.split('=')[1]),cctext);
-        }
-        
-        //獎懲骰設定於此
-        if (inputStr.split('=')[0] == 'cc(1)<'||inputStr.split('=')[0] == 'cc(2)<'||inputStr.split('=')[0] == 'cc(-1)<'||inputStr.split('=')[0] == 'cc(-2)<') 
-        {
-          let cctext = null;
-          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
-          return coc7bp(parseInt(inputStr.split('=')[1]),parseInt(inputStr.split('(')[1]),cctext);
-        }
-        
-        //ccb指令開始於此
-       if (inputStr.split('=')[0] == 'ccb<') 
-        {
-          let cctext = null;
-          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
-          return coc6(parseInt(inputStr.split('=')[1]),cctext);
-        }
+        //if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return randomReply() + '\n' + '\
+//總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
+//\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
+//\n不要打成大寫D，不要逼我嗆你 \
+//\n如果是CoC系的話，有初步支援cc擲骰了，獎懲骰也支援了。 \
+//';
+        if (inputStr.match('鴨霸獸') != null) return '改版啦，加這一隻 @iyx8579r'
 
-        
-        //roll 指令開始於此
-        if (trigger == 'roll'){        
-                  
-          if (inputStr.split(msgSplitor).length == 1) return '\
-總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
-\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
-\n不要打成大寫D，不要逼我嗆你';
-          if (inputStr.split(msgSplitor).length >= 3){
-            
-            if (mainMsg[2].split('*').length == 2) {
-              let tempArr = mainMsg[2].split('*');
-              let text = inputStr.split(msgSplitor)[3];
-              //secCommand = parseInt(tempArr[1]);
-              return MutiRollDice(mainMsg[1],parseInt(tempArr[1]),text);
-            }
-            return NomalRollDice(mainMsg[1],mainMsg[2]);
-          }
-          if (inputStr.split(msgSplitor).length == 2){
-            return NomalRollDice(mainMsg[1],mainMsg[2]);
-          }
-          
-          
-        }
-        
         
         if (trigger != 'roll') return null;
         

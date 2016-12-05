@@ -100,30 +100,67 @@ function parseInput(rplyToken, inputStr) {
         _isNaN = function(obj) {
           return isNaN(parseInt(obj));
         }                   
-        //鴨霸獸指令開始於此
-        //if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return randomReply() + '\n' + '\
-//總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
-//\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
-//\n不要打成大寫D，不要逼我嗆你 \
-//\n如果是CoC系的話，有初步支援cc擲骰了，獎懲骰也支援了。 \
-//';
-        if (inputStr.match('鴨霸獸') != null) return '改版啦，加這一隻 @iyx8579r'
+     //鴨霸獸指令開始於此
+        if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return randomReply() + '\n' + '\
+總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
+\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
+\n不要打成大寫D，不要逼我嗆你 \
+\n如果是CoC系的話，有初步支援cc擲骰了，獎懲骰也支援了。 \
+';
+        if (inputStr.match('鴨霸獸') != null) return randomReply() ;
+        
+        //cc指令開始於此
+        if (inputStr.split('=')[0] == 'cc<') 
+        {
+          let cctext = null;
+          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
+          return coc7(parseInt(inputStr.split('=')[1]),cctext);
+        }
+        
+        //獎懲骰設定於此
+        if (inputStr.split('=')[0] == 'cc(1)<'||inputStr.split('=')[0] == 'cc(2)<'||inputStr.split('=')[0] == 'cc(-1)<'||inputStr.split('=')[0] == 'cc(-2)<') 
+        {
+          let cctext = null;
+          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
+          return coc7bp(parseInt(inputStr.split('=')[1]),parseInt(inputStr.split('(')[1]),cctext);
+        }
+        
+        //ccb指令開始於此
+       if (inputStr.split('=')[0] == 'ccb<') 
+        {
+          let cctext = null;
+          if (mainMsg[1] != undefined ) cctext = mainMsg[1];
+          return coc6(parseInt(inputStr.split('=')[1]),cctext);
+        }
 
+        
+        //roll 指令開始於此
+        if (trigger == 'roll'){        
+                  
+          if (inputStr.split(msgSplitor).length == 1) return '\
+總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
+\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
+\n不要打成大寫D，不要逼我嗆你';
+          if (inputStr.split(msgSplitor).length >= 3){
+            
+            if (mainMsg[2].split('*').length == 2) {
+              let tempArr = mainMsg[2].split('*');
+              let text = inputStr.split(msgSplitor)[3];
+              //secCommand = parseInt(tempArr[1]);
+              return MutiRollDice(mainMsg[1],parseInt(tempArr[1]),text);
+            }
+            return NomalRollDice(mainMsg[1],mainMsg[2]);
+          }
+          if (inputStr.split(msgSplitor).length == 2){
+            return NomalRollDice(mainMsg[1],mainMsg[2]);
+          }
+          
+          
+        }
+        
         
         if (trigger != 'roll') return null;
         
-
-        
-        //先以加號分開彼此
-        //let chackOnce = CuntArr[0].split(comSplitor);
-        //return CuntArr[0];
-        //return chackOnce;
-        // return CuntArr.length;
-        //if (chackOnce.length != 2 || _isNaN(chackOnce[0]) || _isNaN(chackOnce[1])) return randomReply(); //只檢查第一項看看是否打錯
-
-       
-
-
       }
 
 function coc6(chack,text){

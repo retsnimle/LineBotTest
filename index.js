@@ -13,9 +13,9 @@ var options = {
   headers: {
     'Content-Type': 'application/json',
     //無限巴獸
-    'Authorization': 'Bearer clKhNpvJvd4ifWzx0mXWshAlnzEHY9JhMBcxM6kJLghlj+A9uIxSNI1xXxFBtCfTZvr6DcSDUdt/8tLEcgr55ugvWEriHkqt04kML02hm4yEJ1Eym7WZWWbq3hrzhb0S41PCFmvCji7EgsToaR8QFAdB04t89/1O/w1cDnyilFU='
+    //'Authorization': 'Bearer clKhNpvJvd4ifWzx0mXWshAlnzEHY9JhMBcxM6kJLghlj+A9uIxSNI1xXxFBtCfTZvr6DcSDUdt/8tLEcgr55ugvWEriHkqt04kML02hm4yEJ1Eym7WZWWbq3hrzhb0S41PCFmvCji7EgsToaR8QFAdB04t89/1O/w1cDnyilFU='
     //新無限巴獸
-    //'Authorization': 'Bearer N5nOPFYb0S61vE2By6PBSDZkHvh0ssvnHuC3sYugu26BiZjsDLv1lqK2XSBsOhVVUl4hoAKu1b9vBU6X9bMVvWcw9ENcx/WySkN7Rsf8oaJuaUPvzS2aJyMom7Ww34LYQEj6YH4p1/JvM5HW0MyddAdB04t89/1O/w1cDnyilFU='
+    'Authorization': 'Bearer N5nOPFYb0S61vE2By6PBSDZkHvh0ssvnHuC3sYugu26BiZjsDLv1lqK2XSBsOhVVUl4hoAKu1b9vBU6X9bMVvWcw9ENcx/WySkN7Rsf8oaJuaUPvzS2aJyMom7Ww34LYQEj6YH4p1/JvM5HW0MyddAdB04t89/1O/w1cDnyilFU='
     
   }
 }
@@ -384,6 +384,6 @@ return countStr;
 
 
         function randomReply() {
-          let rplyArr = ['你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '嗚噁噁噁噁噁噁，不要隨便叫我。', '幹，你這學不會的豬！', '嘎嘎嘎。', 'wwwwwwwwwwwwwwwww', '為什麼你們每天都可以一直玩；玩就算了還玩我。', '好棒，整點了！咦？不是嗎？', '不要打擾我挖坑！', '好棒，誤點了！', '在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '什麼東西你共三小。', '哈哈哈哈哈哈哈哈！', '一直叫，你4不4想拔嘴人家？', '一直叫，你想被淨灘嗎？', '幫主你也敢嘴？'];
+          let rplyArr = ['你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '嗚噁噁噁噁噁噁，不要隨便叫我。', '幹，你這學不會的豬！', '嘎嘎嘎。', 'wwwwwwwwwwwwwwwww', '為什麼你們每天都可以一直玩；玩就算了還玩我。', '好棒，整點了！咦？不是嗎？', '不要打擾我挖坑！', '好棒，誤點了！', '在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '什麼東西你共三小。', '哈哈哈哈哈哈哈哈！', '一直叫，你4不4想拔嘴人家？', '一直叫，你想被淨灘嗎？', '幫主你也敢嘴？', '拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '看看我！！我體內的怪物已經這麼大了！！', '看看我！！我體內的怪物已經這麼大了！！', '傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '嘴被拔，就會掉。'];
           return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
         }

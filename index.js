@@ -145,7 +145,7 @@ function CoC7th(inputStr){
   //記錄檢定要求值
   let chack = parseInt(inputStr.split('=',2)[1]) ;
   //設定回傳訊息
-  let ReStr = '(1D100<=' + chack + ') → ';
+  let ReStr = '（1D100<=' + chack + '） → ';
   
   //先骰兩次十面骰作為起始值
   let OneRoll = Dice(10) - 1;

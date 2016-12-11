@@ -100,18 +100,23 @@ function parseInput(rplyToken, inputStr) {
         _isNaN = function(obj) {
           return isNaN(parseInt(obj));
         }                   
-//鴨霸獸指令開始於此
-        if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return randomReply() + '\n' + '\
-總之你要擲骰前就先打roll，後面接像是2d6，1d6+3，2d6+1d3之類的就好。  \
-\n要多筆輸出就是先空一格再打像是 *5 之類的。  \
-\n不要打成大寫D，不要逼我嗆你 \
-\n如果是CoC系的話，有初步支援cc擲骰了，獎懲骰也支援了。 \
+        //鴨霸獸指令開始於此
+        if (inputStr.match('鴨霸獸') != null && inputStr.match('說明') != null) return YabasoReply('0') + '\
+\n總之現在應該支援直接的四則運算了，直接打：2d4+1、2D10+1d2\
+\n要多筆輸出就是先打你要的次數，再空一格打骰數：7 3d6、5 2d6+6  \
+\n現在打成大寫D，我也不會嗆你了哈哈哈。 \
+\n如果是CoC系的話，有支援cc擲骰和獎懲骰， \
+\n打 cc> 的話，可以用來骰幕間成長，像：cc>40 偵查。 \
+\n \
+\n以上功能靈感來源來自悠子桑的Hastur，那隻的功能超完整快加他： @fmc9490c \
+\n這隻的BUG超多，棍。\
 ';
-        if (inputStr.match('鴨霸獸') != null) return randomReply() ;
-        
+        else
+          if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
+        else
         //cc判定在此
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
-        
+        else
         //擲骰判定在此        
         if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
@@ -124,17 +129,23 @@ function parseInput(rplyToken, inputStr) {
 
 
 function nomalDiceRoller(inputStr){
-  //首先判斷是否是誤啟動（檢查是否有符合骰子格式），並排除小數點
-  if (inputStr.toLowerCase().match(/\d+d\d+/) == null || inputStr.split(' ',2)[1].match(/\./)!=null) return undefined;
   
-  //再來判斷是否是複數擲骰
-  let mutiOrNot = inputStr.split(' ',1)[0];
-    
+  //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
+  if (inputStr.toLowerCase().match(/\d+d\d+/) == null) return undefined;
+  
+  //再來先把第一個分段拆出來，待會判斷是否是複數擲骰
+  let mutiOrNot = inputStr.toLowerCase().match(/\S+/);
+  
+  //排除小數點
+  if (mutiOrNot.toString().match(/\./)!=null)return undefined;
+
   //先定義要輸出的Str
-  let finalStr = '' ;
+  let finalStr = '' ;  
   
   //是複數擲骰喔
-  if(mutiOrNot.match(/\D/)==null ) {
+  if(mutiOrNot.toString().match(/\D/)==null ) {
+    finalStr= '複數擲骰：\n'
+    if(mutiOrNot>20) return '不支援20次以上的複數擲骰。';
     
     for (i=1 ; i<=mutiOrNot ;i++){
     let DiceToRoll = inputStr.toLowerCase().split(' ',2)[1];
@@ -157,19 +168,22 @@ function nomalDiceRoller(inputStr){
   else
   {
   //一般單次擲骰
-  let DiceToRoll = inputStr.toLowerCase().split(' ',1)[0];
+  let DiceToRoll = mutiOrNot.toString();
+  
   if (DiceToRoll.match('d') == null) return undefined;
   
   //寫出算式
   let equation = DiceToRoll;
   while(equation.match(/\d+d\d+/)!=null) {
-    let tempMatch = equation.match(/\d+d\d+/);
+    let tempMatch = equation.match(/\d+d\d+/);    
+    if (tempMatch.toString().split('d')[0]>200) return '不支援200D以上擲骰。';
+    if (tempMatch.toString().split('d')[1]==1 || tempMatch.toString().split('d')[1]>500) return '不支援D1和超過D500的擲骰。';
     equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
   }
   
   //計算算式
   let answer = eval(equation.toString());
-    finalStr= equation + ' = ' + answer;
+    finalStr= '基本擲骰：' + equation + ' = ' + answer;
   }
   return finalStr;
 
@@ -273,7 +287,17 @@ function Dice(diceSided){
         }              
 
 
-        function randomReply() {
+        function YabasoReply(inputStr) {
           let rplyArr = ['你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '嗚噁噁噁噁噁噁，不要隨便叫我。', '幹，你這學不會的豬！', '嘎嘎嘎。', 'wwwwwwwwwwwwwwwww', '為什麼你們每天都可以一直玩；玩就算了還玩我。', '好棒，整點了！咦？不是嗎？', '不要打擾我挖坑！', '好棒，誤點了！', '在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '什麼東西你共三小。', '哈哈哈哈哈哈哈哈！', '一直叫，你4不4想拔嘴人家？', '一直叫，你想被淨灘嗎？', '幫主你也敢嘴？', '拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '看看我！！我體內的怪物已經這麼大了！！', '看看我！！我體內的怪物已經這麼大了！！', '傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '嘴被拔，就會掉。'];
+          
+          
+          if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
+          else
+          if(inputStr.match('運勢') != null){
+            let LuckArr=['超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','兇','兇','兇','大兇','大兇','你還是，不要知道比較好'];
+            return '運勢喔…我覺得，' + LuckArr[Math.floor((Math.random() * (LuckArr.length)) + 0)] + '吧。';
+            
+          } 
+          
           return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
         }

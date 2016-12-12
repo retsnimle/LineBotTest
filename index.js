@@ -291,10 +291,17 @@ function Dice(diceSided){
         }              
 
 
-        function YabasoReply(inputStr) {
-          let rplyArr = ['你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '嗚噁噁噁噁噁噁，不要隨便叫我。', '幹，你這學不會的豬！', '嘎嘎嘎。', 'wwwwwwwwwwwwwwwww', '為什麼你們每天都可以一直玩；玩就算了還玩我。', '好棒，整點了！咦？不是嗎？', '不要打擾我挖坑！', '好棒，誤點了！', '在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '什麼東西你共三小。', '哈哈哈哈哈哈哈哈！', '一直叫，你4不4想拔嘴人家？', '一直叫，你想被淨灘嗎？', '幫主你也敢嘴？', '拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '看看我！！我體內的怪物已經這麼大了！！', '看看我！！我體內的怪物已經這麼大了！！', '傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '嘴被拔，就會掉。', '你在大聲什麼啦！！！！', '公道價，八萬一（伸手）。', '你的嘴裡有異音', '幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
-          
-          
+function YabasoReply(inputStr) { 
+
+          if(inputStr.match('幫我選') != null||inputStr.match('幫我決定') != null||inputStr.match('幫我挑') != null) {
+            let rplyArr = inputStr.split(' ');
+            let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+            if(Answer.match('幫我選') != null||Answer.match('幫我決定') != null||Answer.match('幫我挑') != null||Answer.match('鴨霸獸') != null) Answer = '幹，你不會自己決定嗎';
+                      
+            return '我想想喔……我覺得，' + Answer + '。';
+          }
+          else
+  
           if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
           else
           if(inputStr.match('饅頭') != null) return '可愛。';
@@ -303,15 +310,60 @@ function Dice(diceSided){
           else
           if(inputStr.match('包子') != null) return '幹你娘我最討厭的就是包子你還一直提一直提';
           else
-            if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
+          if(inputStr.match('鍋貼') != null) return '幹你娘我最討厭的就是鍋貼你還一直提一直提';
           else
-            if(inputStr.match('黑熊') != null) return '中壢李性閃亮的黑熊熊穿浴衣～混亂善娘的黑熊熊穿浴衣～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！';
+          if(inputStr.match('水餃') != null) return '幹你娘我最討厭的就是水餃你還一直提一直提';
+          else
+          if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
+          else
+          if(inputStr.match('爪黃') != null) return '痾痾痾你們死定了啦，不用在意那麼多。';
+          else
+          if(inputStr.match('私訊') != null) return '噁噁噁幹好恐怖';
+          else
+          if(inputStr.match('黑熊') != null) {
+              let rplyArr=['\
+中壢李性閃亮的黑熊熊穿浴衣～混亂善娘的黑熊熊穿浴衣～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！', '\
+中壢，李性，閃亮（燦笑）', '\
+混亂善娘（燦笑）', '\
+黑熊熊穿浴衣～黑熊熊穿浴衣～耶嘿～', '\
+黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了'];
+              return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+            }
           else
           if(inputStr.match('運勢') != null){
-            let LuckArr=['超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事'];
-            return '運勢喔…我覺得，' + LuckArr[Math.floor((Math.random() * (LuckArr.length)) + 0)] + '吧。';
+            let rplyArr=['超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事'];
+            return '運勢喔…我覺得，' + rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)] + '吧。';
             
           } 
-          
+          else
+          {
+          let rplyArr = ['\
+你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '\
+在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '\
+嗚噁噁噁噁噁噁，不要隨便叫我。', '\
+幹，你這學不會的豬！', '\
+嘎嘎嘎。', '\
+wwwwwwwwwwwwwwwww', '\
+為什麼你們每天都可以一直玩；玩就算了還玩我。', '\
+好棒，整點了！咦？不是嗎？', '\
+不要打擾我挖坑！', '好棒，誤點了！', '\
+在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '\
+什麼東西你共三小。', '\
+哈哈哈哈哈哈哈哈！', '\
+一直叫，你4不4想拔嘴人家？', '\
+一直叫，你想被淨灘嗎？', '\
+幫主你也敢嘴？', '\
+拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
+看看我！！我體內的怪物已經這麼大了！！', '\
+傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '\
+人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '\
+嘴被拔，就會掉。', '\
+你在大聲什麼啦！！！！', '\
+公道價，八萬一（伸手）。', '\
+你的嘴裡有異音（指）', '\
+幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
+            
           return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-        }
+          }
+
+}

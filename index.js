@@ -293,11 +293,11 @@ function Dice(diceSided){
 
 function YabasoReply(inputStr) { 
 
-          if(inputStr.match('幫我選') != null||inputStr.match('幫我決定') != null||inputStr.match('幫我挑') != null) {
+           if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
             let rplyArr = inputStr.split(' ');
             let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-            if(Answer.match('幫我選') != null||Answer.match('幫我決定') != null||Answer.match('幫我挑') != null||Answer.match('鴨霸獸') != null) Answer = '幹，你不會自己決定嗎';
-                      
+            if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('鴨霸獸') != null) Answer = '幹，你不會自己決定嗎';                      
+            
             return '我想想喔……我覺得，' + Answer + '。';
           }
           else

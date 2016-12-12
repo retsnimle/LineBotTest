@@ -305,6 +305,8 @@ function Dice(diceSided){
           else
             if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
           else
+            if(inputStr.match('黑熊') != null) return '中壢李性閃亮的黑熊熊穿浴衣～混亂善娘的黑熊熊穿浴衣～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！';
+          else
           if(inputStr.match('運勢') != null){
             let LuckArr=['超大吉','大吉','大吉','中吉','中吉','中吉','小吉','小吉','小吉','小吉','凶','凶','凶','大凶','大凶','你還是，不要知道比較好','這應該不關我的事'];
             return '運勢喔…我覺得，' + LuckArr[Math.floor((Math.random() * (LuckArr.length)) + 0)] + '吧。';

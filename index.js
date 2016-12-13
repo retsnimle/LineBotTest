@@ -313,7 +313,7 @@ function YabasoReply(inputStr) {
   }
   else  
   //以下是幫眾限定的垃圾話
-  if(inputStr.match('愛') != null) return '我是不會嗆你的，因為爸爸愛你。';
+  if(inputStr.match('愛') != null) return '我是不會嗆你的，因為霸獸愛你。';
   else
   if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
   else

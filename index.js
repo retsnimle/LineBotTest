@@ -313,6 +313,8 @@ function YabasoReply(inputStr) {
   }
   else  
   //以下是幫眾限定的垃圾話
+  if(inputStr.match('愛') != null) return '我是不會嗆你的，因為爸爸愛你。';
+  else
   if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
   else
   if(inputStr.match('饅頭') != null) return '可愛。';
@@ -392,6 +394,13 @@ wwwwwwwwwwwwwwwww', '\
 你在大聲什麼啦！！！！', '\
 公道價，八萬一（伸手）。', '\
 你的嘴裡有異音（指）', '\
+噓，安靜跑個團，很難？', '\
+是說沒事別叫我選東西好嗎，難道你們都是天秤座嗎（戰）', '\
+斷！', '\
+在場沒有一個比我帥。', '\
+我不是針對你，我是說在場各位，都是垃圾。', '\
+你知道你很機掰嗎？', '\
+快 …扶我去喝酒 ……', '\
 幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
     return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
   }

@@ -103,7 +103,7 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
-                      
+        if (inputStr.match('test') != null)return '\1F635' ;              
         
         else return undefined;
         

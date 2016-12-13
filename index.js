@@ -301,9 +301,14 @@ function YabasoReply(inputStr) {
   //鴨霸獸幫我選～～
   if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
     let rplyArr = inputStr.split(' ');
-    let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('鴨霸獸') != null)     Answer = '幹，你不會自己決定嗎';
-                
+    
+    if (rplyArr.length == 1) return '靠腰喔要我選也把選項格式打好好不好，真的想被淨灘嗎？';
+    
+    let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length-1))+ 1)];
+    if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('鴨霸獸') != null) {
+      rplyArr = ['幹，你不會自己決定嗎', '人生是掌握在自己手裡的', '隨便哪個都好啦', '連這種東西都不能決定，是不是不太應該啊', '不要把這種東西交給機器人決定比較好吧'];
+      Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length))+ 0)];
+    }
     return '我想想喔……我覺得，' + Answer + '。';
   }
   else  
@@ -319,13 +324,24 @@ function YabasoReply(inputStr) {
 哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ' ];
       return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
     }
-
+  else
+  if(inputStr.match('864') != null||inputStr.match('巴魯斯') != null||inputStr.toLowerCase().match('sora') != null) return '巴魯斯';
+  else
+  if(inputStr.match('康青龍') != null) return '淨灘之力與康青龍同在。';
+  else
+  if(inputStr.match('軒') != null) return '這我一定吉。';
+  else
+  if(inputStr.match('肉食性猛擊') != null) return '想試試嗎？（張嘴）';
+  else
+  if(inputStr.match('俊豪') != null) return '錯誤導入，誤你一生。';
+  else
+  if(inputStr.match('豆腐') != null) return '鴨霸獸不吃。';
   else
   if(inputStr.match('包子') != null) return '幹你娘我最討厭的就是包子你還一直提一直提';
   else
-  if(inputStr.match('鍋貼') != null) return '幹你娘我最討厭的就是鍋貼你還一直提一直提';
+  if(inputStr.match('鍋貼') != null||inputStr.match('煎餃') != null) return '十二顆一盒，鴨霸獸也不吃，而且無比憎恨它。';
   else
-  if(inputStr.match('水餃') != null) return '幹你娘我最討厭的就是水餃你還一直提一直提';
+  if(inputStr.match('水餃') != null) return '噁噁噁噁噁噁噁噁噁';
   else
   if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
   else

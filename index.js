@@ -298,7 +298,7 @@ function YabasoReply(inputStr) {
 ';
   else    
     
-  //鴨霸獸幫我選～～
+ //鴨霸獸幫我選～～
   if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
     let rplyArr = inputStr.split(' ');
     
@@ -306,7 +306,7 @@ function YabasoReply(inputStr) {
     
     let Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length-1))+ 1)];
     if(Answer.match('選') != null||Answer.match('決定') != null||Answer.match('挑') != null||Answer.match('鴨霸獸') != null) {
-      rplyArr = ['幹，你不會自己決定嗎', '人生是掌握在自己手裡的', '隨便哪個都好啦', '連這種東西都不能決定，是不是不太應該啊', '不要把這種東西交給機器人決定比較好吧'];
+      rplyArr = ['幹，你不會自己決定嗎', '人生是掌握在自己手裡的', '隨便哪個都好啦', '連這種東西都不能決定，是不是不太應該啊', '沒事別叫我選東西好嗎，難道你們都是天秤座嗎（戰）', '不要把這種東西交給機器人決定比較好吧'];
       Answer = rplyArr[Math.floor((Math.random() * (rplyArr.length))+ 0)];
     }
     return '我想想喔……我覺得，' + Answer + '。';

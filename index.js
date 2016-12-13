@@ -319,6 +319,14 @@ function YabasoReply(inputStr) {
   else
   if(inputStr.match('饅頭') != null) return '可愛。';
   else
+  if(inputStr.match('炸彈') != null) {
+      let rplyArr=['\
+野～格～炸～彈～', '\
+那你就帶著野格炸彈吧。', '\
+野、格、炸、彈，我、的、最、愛。' ];
+      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    }
+  else
   if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
     let rplyArr=['\
 （抱頭）嗚噁噁噁噁噁頭好痛…', '\

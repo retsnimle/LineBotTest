@@ -253,7 +253,7 @@ function CoC7th(inputStr){
   else ReStr = ReStr + finalRoll + ' → 失敗' ;
 
   //浮動大失敗運算
-  if (finalRoll <= 99 && finalRoll >= 95 ){
+  if (finalRoll <= 99 && finalRoll >= 95 && chack >= 50 ){
     if(chack/2 < 50) ReStr = ReStr + '\n（若要求困難成功則為大失敗）';
     else
     if(chack/5 < 50) ReStr = ReStr + '\n（若要求極限成功則為大失敗）';

@@ -193,7 +193,7 @@ function CoC7th(inputStr){
   
   //先判斷是不是要創角
   //這是悠子房規創角
-  if (inputStr.toLowerCase().match(/^cc\scry$/) != null){
+  if (inputStr.toLowerCase().match('悠子創角') != null){
     let finalStr = '七次3D6決定於STR、CON、DEX、APP、POW。';
     
     for (i=1 ; i<=7 ;i++){
@@ -214,7 +214,7 @@ function CoC7th(inputStr){
   }
 
   //這是傳統創角
-  if (inputStr.toLowerCase().match(/^cc\scrt/) != null){
+  if (inputStr.toLowerCase().match('核心創角') != null){
     
     if (inputStr.split(' ' ).length != 3) return undefined;
     
@@ -227,59 +227,27 @@ function CoC7th(inputStr){
     let AppDebuff = 0;
     let EDUinc = 0;
     
+    
+    let oldArr = [15,20,40,50,60,70,80]
+    let DebuffArr = [5,0,5,10,20,40,80]
+    let AppDebuffArr = [0,0,5,10,15,20,25]
+    let EDUincArr = [0,1,2,3,4,4,4]
+    
     if (old < 15) return ReStr + '等等，核心規則不允許小於15歲的人物哦。';    
     if (old >= 90) return ReStr + '等等，核心規則不允許90歲以上的人物哦。'; 
-    
-    if (old >= 20){
-      
-      if (old >= 80){
-        Debuff = 80;
-        AppDebuff = 25;
-        EDUinc = 4; 
-      }
-      else
-      if (old >= 70){
-        Debuff = 40;
-        AppDebuff = 20;
-        EDUinc = 4; 
-      }
-      else
-      if (old >= 60){
-        Debuff = 20;
-        AppDebuff = 15;
-        EDUinc = 4; 
-      }
-      else
-      if (old >= 60){
-        Debuff = 20;
-        AppDebuff = 15;
-        EDUinc = 4; 
-      }
-      else
-      if (old >= 50){
-        Debuff = 10;
-        AppDebuff = 10;
-        EDUinc = 3; 
-      }
-      else
-      if (old >= 40){
-        Debuff = 5;
-        AppDebuff = 5;
-        EDUinc = 2; 
-      }
-      else
-      if (old >= 20){
-        EDUinc = 1; 
-      }
-    
-      ReStr = ReStr + '年齡調整：從STR、CON或DEX中「總共」減去' + Debuff + '點\n（請自行手動選擇計算）。\n將APP減去' + AppDebuff +'點。可做' + EDUinc + '次EDU的成長擲骰。' ;
-    }
-    else { 
-      Debuff = 5;
-      ReStr = ReStr + '年齡調整：從STR、SIZ中減去' + Debuff + '點\n（請自行手動選擇計算）。\n將EDU減去5點。LUK可擲兩次取高。' ;
-      
+        
+    for ( i=0 ; old >= oldArr[i] ; i ++){
+         Debuff = DebuffArr[i];
+        AppDebuff = AppDebuffArr[i];
+        EDUinc = EDUincArr[i];
     }
 
+    
+    if (old < 20) ReStr = ReStr + '年齡調整：從STR、SIZ中減去' + Debuff + '點\n（請自行手動選擇計算）。\n將EDU減去5點。LUK可擲兩次取高。' ;
+    else
+      if (old >= 40)  ReStr = ReStr + '年齡調整：從STR、CON或DEX中「總共」減去' + Debuff + '點\n（請自行手動選擇計算）。\n將APP減去' + AppDebuff +'點。可做' + EDUinc + '次EDU的成長擲骰。' ;
+    
+    else ReStr = ReStr + '年齡調整：可做' + EDUinc + '次EDU的成長擲骰。' ;
 
     ReStr = ReStr + '\n\nSTR：' + DiceCal('3d6*5');
     if (old>=40) ReStr = ReStr + ' ← 這三項自選共減' + Debuff + '點';
@@ -296,7 +264,7 @@ function CoC7th(inputStr){
     ReStr = ReStr + '\nINT：' + DiceCal('(2d6+6)*5');         
     if (old<20) ReStr = ReStr + '\nEDU：' + DiceCal('3d6*5-5');
     else {
-      let firstEDU = RollDice('3d6');
+      let firstEDU = RollDice('3d6') + '*5';
       ReStr = ReStr + '\n\nEDU初始值：' + firstEDU + ' = ' + eval(firstEDU);
       
       let tempEDU = eval(firstEDU);
@@ -416,8 +384,7 @@ function YabasoReply(inputStr) {
 \n要多筆輸出就是先打你要的次數，再空一格打骰數：7 3d6、5 2d6+6  \
 \n現在打成大寫D，我也不會嗆你了哈哈哈。 \
 \n \
-\n如果是CoC系的話，有支援cc擲骰和獎懲骰， \
-\n打 cc> 的話，可以用來骰幕間成長，像：cc>40 偵查。 \
+\n目前支援多數CoC 7th指令，可打「鴨霸獸 cc」取得更多說明。 \
 \n \
 \n其他骰組我都用不到，所以不會去更新哈哈哈哈哈！ \
 \n以上功能靈感來源全部來自悠子桑的Hastur，那隻的功能超完整快加他： @fmc9490c \
@@ -436,6 +403,20 @@ function YabasoReply(inputStr) {
 \n因為不管哪個功能都有可能會被嗆啊哈哈哈哈哈！\
 ';
   else    
+
+  //CC功能說明
+  if (inputStr.match('cc') != null) return '\
+【CC功能說明】\
+\n \
+\n和凍豆腐一樣，最常用的是「cc<=[數字]」的一般檢定。\
+\n還有「cc([-2~2])<=[數字]」的獎懲骰。\
+\n \
+\n和凍豆腐不同的新增功能如下： \
+\n幕間成長骰：「cc>[數字]」，用於幕間技能成長。\
+\n一鍵創角（核心規則）：\n「cc 核心創角 [年齡]」，以核心規則創角（含年齡調整）。\
+\n一鍵創角（悠子房規）：\n「cc 悠子創角」，主要屬性骰七取五，次要屬性骰四取三，LUK骰二取一。\
+';
+  else        
     
   //鴨霸獸幫我選～～
   if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {

@@ -313,6 +313,18 @@ function YabasoReply(inputStr) {
   }
   else  
   //以下是幫眾限定的垃圾話
+  if(inputStr.match('進化') != null) return '鴨霸獸進化～～超霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
+  else  
+  if(inputStr.match('拔嘴') != null) {
+    let rplyArr=['\
+傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。', '\
+拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
+在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。', '\
+可以的可以的，隨意隨意；反正機械鴨霸獸的嘴是拋棄式的。', '\
+人類每花60秒拔嘴，就減少一分鐘的壽命。'];
+      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    }
+  else
   if(inputStr.match('愛') != null) return '我是不會嗆你的，因為霸獸愛你。';
   else
   if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';

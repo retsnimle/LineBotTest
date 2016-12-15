@@ -110,48 +110,49 @@ function parseInput(rplyToken, inputStr) {
       }
 
 
+        
 function nomalDiceRoller(inputStr){
+ //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
+  if (inputStr.toLowerCase().match(/\d+d\d+/) == null) return undefined;
+
+  //再來先把第一個分段拆出來，待會判斷是否是複數擲骰
+  let mutiOrNot = inputStr.toLowerCase().match(/\S+/);
+
+  //排除小數點
+  if (mutiOrNot.toString().match(/\./)!=null)return undefined;
+
+  if(mutiOrNot.toString().match(/\D/)==null )  {
+    let finalStr= '複數擲骰：'
+    if(mutiOrNot>20) return '不支援20次以上的複數擲骰。';
+
+    for (i=1 ; i<=mutiOrNot ;i++){
+      let DiceToRoll = inputStr.toLowerCase().split(' ',2)[1];
+      if (DiceToRoll.match('d') == null) return undefined;
+      finalStr = finalStr +'\n' + i + '# ' + DiceCal(DiceToRoll);
+    }
+    if(finalStr.match('200D')!= null) return '欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？';
+    if(finalStr.match('D500')!= null) return '不支援D1和超過D500的擲骰；想被淨灘嗎？';
+    return finalStr;
+  } 
+  
+  else return '基本擲骰：' + DiceCal(mutiOrNot.toString());
+}
+
+        
+//作計算的函數
+function DiceCal(inputStr){
   
   //首先判斷是否是誤啟動（檢查是否有符合骰子格式）
   if (inputStr.toLowerCase().match(/\d+d\d+/) == null) return undefined;
-  
-  //再來先把第一個分段拆出來，待會判斷是否是複數擲骰
-  let mutiOrNot = inputStr.toLowerCase().match(/\S+/);
-  
+    
   //排除小數點
-  if (mutiOrNot.toString().match(/\./)!=null)return undefined;
+  if (inputStr.toString().match(/\./)!=null)return undefined;
 
   //先定義要輸出的Str
   let finalStr = '' ;  
   
-  //是複數擲骰喔
-  if(mutiOrNot.toString().match(/\D/)==null ) {
-    finalStr= '複數擲骰：\n'
-    if(mutiOrNot>20) return '不支援20次以上的複數擲骰。';
-    
-    for (i=1 ; i<=mutiOrNot ;i++){
-    let DiceToRoll = inputStr.toLowerCase().split(' ',2)[1];
-    if (DiceToRoll.match('d') == null) return undefined;
-
-    //寫出算式
-    let equation = DiceToRoll;
-    while(equation.match(/\d+d\d+/)!=null) {
-      let tempMatch = equation.match(/\d+d\d+/);
-      equation = equation.replace(/\d+d\d+/, RollDice(tempMatch));
-    }
-
-    //計算算式
-    let answer = eval(equation.toString());
-    finalStr = finalStr + i + '# ' + equation + ' = ' + answer + '\n';
-    }
-        
-  }
-  
-  else
-  {
   //一般單次擲骰
-  let DiceToRoll = mutiOrNot.toString();
-  
+  let DiceToRoll = inputStr.toString().toLowerCase();  
   if (DiceToRoll.match('d') == null) return undefined;
   
   //寫出算式
@@ -165,16 +166,17 @@ function nomalDiceRoller(inputStr){
   
   //計算算式
   let answer = eval(equation.toString());
-    finalStr= '基本擲骰：' + equation + ' = ' + answer;
-  }
+    finalStr= equation + ' = ' + answer;
+  
   return finalStr;
 
 
 }        
 
+//用來把d給展開成算式的函數
 function RollDice(inputStr){
   //先把inputStr變成字串（不知道為什麼非這樣不可）
-  let comStr=inputStr.toString();
+  let comStr=inputStr.toString().toLowerCase();
   let finalStr = '(';
 
   for (let i = 1; i <= comStr.split('d')[0]; i++) {
@@ -188,77 +190,214 @@ function RollDice(inputStr){
       
         
 function CoC7th(inputStr){
-  //記錄檢定要求值
-  let chack = parseInt(inputStr.split('=',2)[1]) ;
-  //設定回傳訊息
-  let ReStr = '(1D100<=' + chack + ') → ';
   
-  //先骰兩次十面骰作為起始值
-  let OneRoll = Dice(10) - 1;
-  let TenRoll = Dice(10);
-  let firstRoll = TenRoll*10 + OneRoll;
-  if (firstRoll > 100) firstRoll = firstRoll - 100;  
+  //先判斷是不是要創角
+  //這是悠子房規創角
+  if (inputStr.toLowerCase().match(/^cc\scry$/) != null){
+    let finalStr = '七次3D6決定於STR、CON、DEX、APP、POW。';
+    
+    for (i=1 ; i<=7 ;i++){
+      finalStr = finalStr +'\n' + i + '# ' + DiceCal('3d6*5');
+    }
+    finalStr = finalStr +'\n\n四次2D6+6決定SIZ、INT、EDU。';
+    
+    for (i=1 ; i<=4 ;i++){
+      finalStr = finalStr +'\n' + i + '# ' + DiceCal('(2d6+6)*5');
+    }
+    
+    finalStr = finalStr +'\n\n兩次3D6決定LUK。';
+    for (i=1 ; i<=2 ;i++){
+      finalStr = finalStr +'\n' + i + '# ' + DiceCal('3d6*5');
+    } 
 
-  //先設定最終結果等於第一次擲骰
-  let finalRoll = firstRoll;
-  
-  
-  //判斷是否為成長骰
-  if(inputStr.match(/^cc>\d+/)!=null){
-    chack = parseInt(inputStr.split('>',2)[1]) ;
-    if (finalRoll>chack) {
-      
-      ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 成功成長' + Dice(10) +'點';
-      return ReStr;
-    }
-    if (finalRoll<=chack) {
-      ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 沒有成長';
-      return ReStr;
-    }
-    return undefined;
+    return finalStr;
   }
-  
-  
-  //判斷是否為獎懲骰
-  let BPDice = 0;
-  if(inputStr.match(/^cc\(-?[12]\)/)!=null) BPDice = parseInt(inputStr.split('(',2)[1]) ;
-  //如果是獎勵骰
-  if(BPDice != 0){
-    let tempStr = firstRoll;
-    for (let i = 1; i <= Math.abs(BPDice); i++ ){
-      let OtherTenRoll = Dice(10);
-      let OtherRoll = OtherTenRoll.toString() + OneRoll.toString();
-      if (OtherRoll > 100) OtherRoll = parseInt(OtherRoll) - 100;  
-      tempStr = tempStr + '、' + OtherRoll;
-      }
-      let countArr = tempStr.split('、');       
-      if (BPDice>0) finalRoll = Math.min(...countArr);
-      if (BPDice<0) finalRoll = Math.max(...countArr);
-      
-      ReStr = ReStr + tempStr + ' → ';      
-    }  
-  
-  //結果判定
-  if (finalRoll == 1) ReStr = ReStr + finalRoll + ' → 恭喜！大成功！';
-  else
-  if (finalRoll == 100) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
-  else
-  if (finalRoll <= 99 && finalRoll >= 95 && chack < 50) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
-  else
-  if (finalRoll <= chack/5) ReStr = ReStr + finalRoll + ' → 極限成功';
-  else
-  if (finalRoll <= chack/2) ReStr = ReStr + finalRoll + ' → 困難成功';
-  else
-  if (finalRoll <= chack) ReStr = ReStr + finalRoll + ' → 通常成功';
-  else ReStr = ReStr + finalRoll + ' → 失敗' ;
 
-  //浮動大失敗運算
-  if (finalRoll <= 99 && finalRoll >= 95 && chack >= 50 ){
-    if(chack/2 < 50) ReStr = ReStr + '\n（若要求困難成功則為大失敗）';
-    else
-    if(chack/5 < 50) ReStr = ReStr + '\n（若要求極限成功則為大失敗）';
-  }  
-  return ReStr;
+  //這是傳統創角
+  if (inputStr.toLowerCase().match(/^cc\scrt/) != null){
+    
+    if (inputStr.split(' ' ).length != 3) return undefined;
+    
+    //讀取年齡
+    let old = parseInt(inputStr.split(' ',3)[2]);
+    if (old == NaN) return undefined;
+    let ReStr = '調查員年齡設為：' + old + '\n';
+    //設定 因年齡減少的點數 和 EDU加骰次數
+    let Debuff = 0;
+    let AppDebuff = 0;
+    let EDUinc = 0;
+    
+    if (old < 15) return ReStr + '等等，核心規則不允許小於15歲的人物哦。';    
+    if (old >= 90) return ReStr + '等等，核心規則不允許90歲以上的人物哦。'; 
+    
+    if (old >= 20){
+      
+      if (old >= 80){
+        Debuff = 80;
+        AppDebuff = 25;
+        EDUinc = 4; 
+      }
+      else
+      if (old >= 70){
+        Debuff = 40;
+        AppDebuff = 20;
+        EDUinc = 4; 
+      }
+      else
+      if (old >= 60){
+        Debuff = 20;
+        AppDebuff = 15;
+        EDUinc = 4; 
+      }
+      else
+      if (old >= 60){
+        Debuff = 20;
+        AppDebuff = 15;
+        EDUinc = 4; 
+      }
+      else
+      if (old >= 50){
+        Debuff = 10;
+        AppDebuff = 10;
+        EDUinc = 3; 
+      }
+      else
+      if (old >= 40){
+        Debuff = 5;
+        AppDebuff = 5;
+        EDUinc = 2; 
+      }
+      else
+      if (old >= 20){
+        EDUinc = 1; 
+      }
+    
+      ReStr = ReStr + '年齡調整：從STR、CON或DEX中「總共」減去' + Debuff + '點\n（請自行手動選擇計算）。\n將APP減去' + AppDebuff +'點。可做' + EDUinc + '次EDU的成長擲骰。' ;
+    }
+    else { 
+      Debuff = 5;
+      ReStr = ReStr + '年齡調整：從STR、SIZ中減去' + Debuff + '點\n（請自行手動選擇計算）。\n將EDU減去5點。LUK可擲兩次取高。' ;
+      
+    }
+
+
+    ReStr = ReStr + '\n\nSTR：' + DiceCal('3d6*5');
+    if (old>=40) ReStr = ReStr + ' ← 這三項自選共減' + Debuff + '點';
+    if (old<20) ReStr = ReStr + ' ← 這兩項擇一減' + Debuff + '點';
+    ReStr = ReStr + '\nCON：' + DiceCal('3d6*5');
+    if (old>=40) ReStr = ReStr + ' ← 這三項自選共減' + Debuff + '點';
+    ReStr = ReStr + '\nDEX：' + DiceCal('3d6*5');
+    if (old>=40) ReStr = ReStr + ' ← 這三項自選共減' + Debuff + '點';
+    if (old>=40) ReStr = ReStr + '\nAPP：' + DiceCal('3d6*5-' + AppDebuff);
+    else ReStr = ReStr + '\nAPP：' + DiceCal('3d6*5');
+    ReStr = ReStr + '\nPOW：' + DiceCal('3d6*5');
+    ReStr = ReStr + '\nSIZ：' + DiceCal('(2d6+6)*5');
+    if (old<20) ReStr = ReStr + ' ← 這兩項擇一減' + Debuff + '點';
+    ReStr = ReStr + '\nINT：' + DiceCal('(2d6+6)*5');         
+    if (old<20) ReStr = ReStr + '\nEDU：' + DiceCal('3d6*5-5');
+    else {
+      let firstEDU = RollDice('3d6');
+      ReStr = ReStr + '\n\nEDU初始值：' + firstEDU + ' = ' + eval(firstEDU);
+      
+      let tempEDU = eval(firstEDU);
+      
+      for (i = 1 ; i <= EDUinc ; i++){
+        let EDURoll = Dice(100);
+        ReStr = ReStr + '\n第' + i + '次EDU成長 → ' + EDURoll;
+        
+        
+        if (EDURoll>tempEDU) {
+          let EDUplus = Dice(10);
+          ReStr = ReStr + ' → 成功成長' + EDUplus +'點';
+          tempEDU = tempEDU + EDUplus;
+        }
+        else{
+        ReStr = ReStr + ' → 沒有成長';       
+        }
+      }
+      ReStr = ReStr + '\nEDU最終值：' +tempEDU;
+    }
+    
+    
+    ReStr = ReStr + '\n\nLUK：' + DiceCal('3d6*5');    
+    if (old<20) ReStr = ReStr + '\nLUK額外加骰：' + DiceCal('3D6*5');
+    
+    
+    return ReStr;
+  } 
+  
+  
+          //記錄檢定要求值
+          let chack = parseInt(inputStr.split('=',2)[1]) ;
+          //設定回傳訊息
+          let ReStr = '(1D100<=' + chack + ') → ';
+
+          //先骰兩次十面骰作為起始值
+          let OneRoll = Dice(10) - 1;
+          let TenRoll = Dice(10);
+          let firstRoll = TenRoll*10 + OneRoll;
+          if (firstRoll > 100) firstRoll = firstRoll - 100;  
+
+          //先設定最終結果等於第一次擲骰
+          let finalRoll = firstRoll;
+
+
+          //判斷是否為成長骰
+          if(inputStr.match(/^cc>\d+/)!=null){
+            chack = parseInt(inputStr.split('>',2)[1]) ;
+            if (finalRoll>chack) {
+
+              ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 成功成長' + Dice(10) +'點';
+              return ReStr;
+            }
+            if (finalRoll<=chack) {
+              ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 沒有成長';
+              return ReStr;
+            }
+            return undefined;
+          }
+
+
+          //判斷是否為獎懲骰
+          let BPDice = 0;
+          if(inputStr.match(/^cc\(-?[12]\)/)!=null) BPDice = parseInt(inputStr.split('(',2)[1]) ;
+          //如果是獎勵骰
+          if(BPDice != 0){
+            let tempStr = firstRoll;
+            for (let i = 1; i <= Math.abs(BPDice); i++ ){
+              let OtherTenRoll = Dice(10);
+              let OtherRoll = OtherTenRoll.toString() + OneRoll.toString();
+              if (OtherRoll > 100) OtherRoll = parseInt(OtherRoll) - 100;  
+              tempStr = tempStr + '、' + OtherRoll;
+            }
+            let countArr = tempStr.split('、');       
+            if (BPDice>0) finalRoll = Math.min(...countArr);
+            if (BPDice<0) finalRoll = Math.max(...countArr);
+
+            ReStr = ReStr + tempStr + ' → ';      
+          }  
+
+          //結果判定
+          if (finalRoll == 1) ReStr = ReStr + finalRoll + ' → 恭喜！大成功！';
+          else
+            if (finalRoll == 100) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
+          else
+            if (finalRoll <= 99 && finalRoll >= 95 && chack < 50) ReStr = ReStr + finalRoll + ' → 啊！大失敗！';
+          else
+            if (finalRoll <= chack/5) ReStr = ReStr + finalRoll + ' → 極限成功';
+          else
+            if (finalRoll <= chack/2) ReStr = ReStr + finalRoll + ' → 困難成功';
+          else
+            if (finalRoll <= chack) ReStr = ReStr + finalRoll + ' → 通常成功';
+          else ReStr = ReStr + finalRoll + ' → 失敗' ;
+
+          //浮動大失敗運算
+          if (finalRoll <= 99 && finalRoll >= 95 && chack >= 50 ){
+            if(chack/2 < 50) ReStr = ReStr + '\n（若要求困難成功則為大失敗）';
+            else
+              if(chack/5 < 50) ReStr = ReStr + '\n（若要求極限成功則為大失敗）';
+          }  
+          return ReStr;
 }
  
   
@@ -298,7 +437,7 @@ function YabasoReply(inputStr) {
 ';
   else    
     
- //鴨霸獸幫我選～～
+  //鴨霸獸幫我選～～
   if(inputStr.match('選') != null||inputStr.match('決定') != null||inputStr.match('挑') != null) {
     let rplyArr = inputStr.split(' ');
     
@@ -313,6 +452,14 @@ function YabasoReply(inputStr) {
   }
   else  
   //以下是幫眾限定的垃圾話
+  if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
+      let rplyArr=['\
+（抱頭）嗚噁噁噁噁噁頭好痛…', '\
+你說什麼……嗚嗚……不要提這個QQ', '\
+哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ' ];
+      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    }
+  else
   if(inputStr.match('進化') != null) return '鴨霸獸進化～～超霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
   else  
   if(inputStr.match('拔嘴') != null) {
@@ -324,7 +471,7 @@ function YabasoReply(inputStr) {
 人類每花60秒拔嘴，就減少一分鐘的壽命。'];
       return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
     }
-  else
+  else  
   if(inputStr.match('愛') != null) return '我是不會嗆你的，因為霸獸愛你。';
   else
   if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
@@ -338,15 +485,7 @@ function YabasoReply(inputStr) {
 野、格、炸、彈，我、的、最、愛。' ];
       return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
     }
-  else
-  if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
-    let rplyArr=['\
-（抱頭）嗚噁噁噁噁噁頭好痛…', '\
-你說什麼……嗚嗚……不要提這個QQ', '\
-哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
+  else  
   if(inputStr.match('864') != null||inputStr.match('巴魯斯') != null||inputStr.toLowerCase().match('sora') != null) return '巴魯斯';
   else
   if(inputStr.match('康青龍') != null) return '淨灘之力與康青龍同在。';
@@ -372,7 +511,7 @@ function YabasoReply(inputStr) {
   if(inputStr.match('私訊') != null) return '噁噁噁幹好恐怖';
   else
   if(inputStr.match('黑熊') != null) {
-let rplyArr=['\
+    let rplyArr=['\
 中壢李性閃亮的黑熊熊穿浴衣👘～混亂善娘的黑熊熊穿浴衣👘～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！', '\
 中壢，李性，閃亮（燦笑）', '\
 混亂善娘（燦笑）', '\

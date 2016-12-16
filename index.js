@@ -194,21 +194,21 @@ function CoC7th(inputStr){
   //先判斷是不是要創角
   //這是悠子房規創角
   if (inputStr.toLowerCase().match('悠子創角') != null){
-    let finalStr = '七次3D6決定於STR、CON、DEX、APP、POW。';
+    let finalStr = '骰七次3D6取五次，\n決定STR、CON、DEX、APP、POW。\n';
     
     for (i=1 ; i<=7 ;i++){
       finalStr = finalStr +'\n' + i + '# ' + DiceCal('3d6*5');
     }
     
     finalStr = finalStr + '\n==';
-    finalStr = finalStr +'\n四次2D6+6決定SIZ、INT、EDU。';
+    finalStr = finalStr +'\n骰四次2D6+6取三次，\n決定SIZ、INT、EDU。\n';
     
     for (i=1 ; i<=4 ;i++){
       finalStr = finalStr +'\n' + i + '# ' + DiceCal('(2d6+6)*5');
     }
     
     finalStr = finalStr + '\n==';
-    finalStr = finalStr +'\n兩次3D6決定LUK。';
+    finalStr = finalStr +'\n骰兩次3D6取一次，\n決定LUK。\n';
     for (i=1 ; i<=2 ;i++){
       finalStr = finalStr +'\n' + i + '# ' + DiceCal('3d6*5');
     } 

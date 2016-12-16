@@ -299,6 +299,8 @@ function CoC7th(inputStr){
     return ReStr;
   } 
   
+  //如果不是正確的格式，直接跳出
+  if(inputStr.match('=') == null && inputStr.match('>') == null ) return undefined;
   
           //記錄檢定要求值
           let chack = parseInt(inputStr.split('=',2)[1]) ;

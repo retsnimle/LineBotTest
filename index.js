@@ -272,7 +272,7 @@ function CoC7th(inputStr){
     ReStr = ReStr + '\nＳＩＺ：' + DiceCal('(2d6+6)*5');
     if (old<20) ReStr = ReStr + ' ←擇一減' + Debuff ;
     ReStr = ReStr + '\nＩＮＴ：' + DiceCal('(2d6+6)*5');         
-    if (old<20) ReStr = ReStr + '\nＥＤＵ：' + DiceCal('3d6*5-5');
+    if (old<20) ReStr = ReStr + '\nＥＤＵ：' + DiceCal('(2d6+6)*5-5');
     else {
       let firstEDU = '(' + RollDice('2d6') + '+6)*5';
       ReStr = ReStr + '\n==';

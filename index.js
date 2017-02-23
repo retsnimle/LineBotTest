@@ -333,7 +333,8 @@ function CoC7th(inputStr){
           let TenRoll = Dice(10);
           //後門
           //必定成功
-          if(inputStr.match(/\s{2}/)!=null) TenRoll = Dice(Math.floor(chack/10-1));
+          if(inputStr.match(/\s{2}/)!=null) TenRoll = Dice(chack/10) - 1;
+          if(inputStr.match(/\s{2}/)!=null) OneRoll = Dice(9);  
   
           let firstRoll = TenRoll*10 + OneRoll;
           if (firstRoll > 100) firstRoll = firstRoll - 100;  

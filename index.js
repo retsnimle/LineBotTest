@@ -328,19 +328,29 @@ function CoC7th(inputStr){
           //設定回傳訊息
           let ReStr = '(1D100<=' + chack + ') → ';
 
-          //先骰兩次十面骰作為起始值
+           //先骰兩次十面骰作為起始值
           let OneRoll = Dice(10) - 1;
           let TenRoll = Dice(10);
+          //後門
+          //必定成功
+          if(inputStr.match(/\s{2}/)!=null) TenRoll = Dice(Math.floor(chack/10-1));
+  
           let firstRoll = TenRoll*10 + OneRoll;
           if (firstRoll > 100) firstRoll = firstRoll - 100;  
 
+          
           //先設定最終結果等於第一次擲骰
           let finalRoll = firstRoll;
+          
 
 
           //判斷是否為成長骰
           if(inputStr.match(/^cc>\d+/)!=null){
             chack = parseInt(inputStr.split('>',2)[1]) ;
+            //後門
+            //必定成功
+            if(inputStr.match(/\s{2}/)!=null) finalRoll = chack + Dice(99-chack);
+            
             if (finalRoll>chack) {
 
               ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 成功成長' + Dice(10) +'點';

@@ -502,6 +502,14 @@ function YabasoReply(inputStr) {
       return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
     }
   else
+    if(inputStr.match('鬼屋') != null) {
+      let rplyArr=['\
+我還是覺得鬼屋不適合新手KP啦！', '\
+誰再說鬼屋適合新手KP的我就（ry', '\
+神說，你們誰開過鬼屋的，都可以拿石頭打他。'];
+      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    }
+    else
   if(inputStr.match('路過') != null) {
     let rplyArr=['\
 我的+9火把呢？'];

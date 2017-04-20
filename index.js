@@ -616,6 +616,16 @@ Barusu！' ];
     return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
   }
   else
+  if(inputStr.match('鎮隆') != null||inputStr.match('龍星涼') != null) {
+    let rplyArr=['\
+我到現在還是很訝異，她還只是個14歲的少女阿。', '\
+我沒想過這種畫風鎮隆也會出手，雖然她外表很艷麗但他還是14歲少女。', '\
+吃了我的女兒我真的很震驚，我也不知道為什麼會驚訝這麼久。', '\
+我的女兒被吃了這件事，我到現在還是無法釋懷。', '\
+我的女兒…她才14歲而已阿。'];
+    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+  }
+  else
     
   //以下是運勢功能
   if(inputStr.match('運勢') != null){

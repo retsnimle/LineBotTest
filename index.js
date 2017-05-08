@@ -479,6 +479,18 @@ function YabasoReply(inputStr) {
     
     
   //以下是幫眾限定的垃圾話
+    if(inputStr.match('李孟儒') != null) {
+      let rplyArr=['\
+祂是電，祂是光，祂是唯一的神話。', '\
+太初有道，道與李孟儒同在——道就是李孟儒。', '\
+李孟儒說，要有光，就有了光。李孟儒看光是好的，就把光和暗分開。', '\
+起初，李孟儒創造天地。地是空虛渾沌，淵面黑暗，李孟儒的靈運行在水面上。' ];
+      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+    }
+  else
+  if(inputStr.match('roc') != null) return null;
+  else  
+    
   if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
       let rplyArr=['\
 （抱頭）嗚噁噁噁噁噁頭好痛…', '\

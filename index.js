@@ -487,8 +487,6 @@ function YabasoReply(inputStr) {
 起初，李孟儒創造天地。地是空虛渾沌，淵面黑暗，李孟儒的靈運行在水面上。' ];
       return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
     }
-  else
-  if(inputStr.match('roc') != null) return null;
   else  
     
   if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {

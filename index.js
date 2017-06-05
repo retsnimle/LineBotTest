@@ -92,10 +92,9 @@ function parseInput(rplyToken, inputStr) {
         _isNaN = function(obj) {
          return isNaN(parseInt(obj));
         }                   
-        //鴨霸獸指令開始於此
+       
 
-          if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
-        else
+         
         //cc判定在此
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
         else
@@ -106,8 +105,9 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
         }
-  
-        
+        else
+        //鴨霸獸指令開始於此
+        if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
         else return undefined;
         
       }

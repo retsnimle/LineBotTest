@@ -99,6 +99,9 @@ function parseInput(rplyToken, inputStr) {
         //cc判定在此
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
         else
+        //pbta判定在此
+        if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
+        else
         //擲骰判定在此        
         if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
           return nomalDiceRoller(inputStr);
@@ -192,7 +195,48 @@ function RollDice(inputStr){
   return finalStr;
 }
                                                                      
-      
+
+//PBTA判定在這裡
+function pbta(inputStr){
+
+  //如果只有打pb兩個字，直接骰
+  if ( parseInt(inputStr.toLowerCase().length) == 2)
+  {
+    let CalStr = RollDice('2d6');
+    
+    if (eval(CalStr.toString()) >= 10){      
+      return CalStr + '=' + eval(CalStr.toString()) + '，成功！';
+      }
+    else if (eval(CalStr.toString()) <= 6){
+      return CalStr + '=' + eval(CalStr.toString()) + '，失敗。';
+      }    
+    else {
+      return CalStr + '=' + eval(CalStr.toString()) + '，部分成功。';
+      }
+    //DiceCal('2d6');    
+    //RollDice('2d6')
+    
+  }
+  
+  //先去掉誤判
+  if (inputStr.toLowerCase().match(/^pb(?!\+)/) != null && inputStr.toLowerCase().match(/^pb(?!\-)/) != null){
+    return undefined;
+  }
+  
+  //有加值的PBTA擲骰
+  else{
+    let CalStr = RollDice('2d6') + inputStr.split('b',2)[1];
+    if (eval(CalStr.toString()) >= 10){      
+      return CalStr + '=' + eval(CalStr.toString()) + '，成功！';
+    }
+    else if (eval(CalStr.toString()) <= 6){
+      return CalStr + '=' + eval(CalStr.toString()) + '，失敗。';
+    }    
+    else {
+      return CalStr + '=' + eval(CalStr.toString()) + '，部分成功。';
+    }
+  }
+}
                
 function CoC7th(inputStr){
   

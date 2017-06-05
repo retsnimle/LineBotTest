@@ -198,9 +198,11 @@ function RollDice(inputStr){
 
 //PBTA判定在這裡
 function pbta(inputStr){
+  
+  let input = inputStr.toLowerCase().split(' ',2)[0];
 
   //如果只有打pb兩個字，直接骰
-  if ( parseInt(inputStr.toLowerCase().length) == 2)
+  if ( parseInt(input.toLowerCase().length) == 2)
   {
     let CalStr = RollDice('2d6');
     
@@ -219,13 +221,13 @@ function pbta(inputStr){
   }
   
   //先去掉誤判
-  if (inputStr.toLowerCase().match(/^pb(?!\+)/) != null && inputStr.toLowerCase().match(/^pb(?!\-)/) != null){
+  if (input.toLowerCase().match(/^pb(?!\+)/) != null && input.toLowerCase().match(/^pb(?!\-)/) != null){
     return undefined;
   }
   
   //有加值的PBTA擲骰
   else{
-    let CalStr = RollDice('2d6') + inputStr.split('b',2)[1];
+    let CalStr = RollDice('2d6') + input.split('b',2)[1];
     if (eval(CalStr.toString()) >= 10){      
       return CalStr + '=' + eval(CalStr.toString()) + '，成功！';
     }

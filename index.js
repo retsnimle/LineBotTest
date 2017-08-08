@@ -398,7 +398,7 @@ function CoC7th(inputStr){
             //必定成功
             if(inputStr.match(/\s{2}/)!=null) finalRoll = chack + Dice(99-chack);
             
-            if (finalRoll>chack) {
+            if (finalRoll>chack||finalRoll>95) {
 
               ReStr = '(1D100>' + chack + ') → ' + finalRoll + ' → 成功成長' + Dice(10) +'點';
               return ReStr;

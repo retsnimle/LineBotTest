@@ -101,8 +101,8 @@ function parseInput(rplyToken, inputStr) {
         //入幫測驗判定在此
           if (inputStr.match('ybb') != null) return Yababang(inputStr) ;      
           else
-       // if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
-       // else
+        if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
+        else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
         else
@@ -753,6 +753,10 @@ function Yababang(inputStr) {
   let rplyArr = inputStr.split(' ');
   let pl = rplyArr[1];
   if (rplyArr.length == 1) return '想要挑戰入幫測驗，就把格式打好啊幹！';
+  if (inputStr.match('yabaso') != null||inputStr.match('巴獸') != null||inputStr.match('鴨巴') != null||inputStr.match('鴨嘴獸') != null||inputStr.match('幫主') != null||inputStr.match('泰瑞') != null) return '幫主好！幹，那邊那個菜比巴，看到幫主不會敬禮啊，想被淨灘是不是？！';
+  
+  //if (inputStr.match('請問') != null||inputStr.match('柯基') != null||inputStr.match('默兒') != null||inputStr.match('他口') != null||inputStr.match('桑尼') != null||inputStr.match('桑妮') != null||inputStr.match('阿歐西') != null||inputStr.toLowerCase().match('roc') != null||inputStr.match('軒哥') != null) return '那個，關主不要在這邊鬧了，去你的關卡準備好，乖。';
+
   
   //開始迴圈部分
   

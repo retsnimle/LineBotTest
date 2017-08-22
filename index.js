@@ -99,8 +99,8 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
         else
         //入幫測驗判定在此
-        if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
-        else
+       // if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
+       // else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
         else

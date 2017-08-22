@@ -99,6 +99,8 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
         else
         //入幫測驗判定在此
+          if (inputStr.match('ybb') != null) return Yababang(inputStr) ;      
+          else
        // if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
        // else
         //pbta判定在此
@@ -757,17 +759,17 @@ function Yababang(inputStr) {
   let stage = 1;
   let DeadOrNot = 0;
   let pinch = 80;
-  let reply = '本次入幫測驗挑戰者是【' + pl + '】，鴨霸幫萬歲！\n';
+  let reply = '本次入幫測驗挑戰者是【' + pl + '】，鴨霸幫萬歲！';
   
   for (; DeadOrNot == 0; stage++){
-  reply = reply + '\n' + pl+'挑戰第' + stage +'關' ;
+  reply = reply + '\n\n' + pl+'挑戰第' + stage +'關：\n' ;
     
     if(Dice(100) <= pinch){
-      reply = reply +'(' + pinch + '):' + YababangG();
+      reply = reply + YababangG(stage,pl);
       pinch = pinch - Dice(10);
     }
     else {
-      reply = reply +'(' + pinch + '):' + YababangB();
+      reply = reply + YababangB(stage,pl);
       DeadOrNot = 1;
       reply = reply + '\n\n勝敗乃兵家常事，大俠請重新來過吧。\n或者你可以直接月付1999加入白銀幫眾。';
     }
@@ -782,13 +784,43 @@ function Yababang(inputStr) {
   return reply;
 }
         
-function YababangG(){
-  let rplyArr = ['成功！','成功了幹！'];
+function YababangG(stage,pl){
+  
+  let rplyArr = ['成功！\n','成功了幹！\n'];
+  
+  if(stage==1)rplyArr = ['\
+「口桀口桀口桀，沒有大捏捏的人是無法通過我言青問這一關的。」請問站在通往下一關的通道前對著你這樣說。\n'+pl+'拿出手機，在請問的面前課了一單明星三缺一，成為了請問的衣食父母，通過了關卡。','\
+你看到一個牌子寫著測驗入口，鴨霸幫的傳統測驗第一關就是攀登末日火山，穿越幽暗水道，戰勝九頭蜥蜴，並且躍過無底深淵。\n但'+pl+'偵查大成功，看到底下的小字寫著「抖內幫主吃上引水產就可以直接通過第一關」，你拿出魔法小卡結束了這個回合。\
+'];
+  
+  if(stage==2)rplyArr = ['\
+「科科科，沒想到你能走到這裡，不過也到極限了，接下來就讓柯基來當你的對手吧！」一群柯基科科科的叫著撲了上去。\n'+pl+'成功將柯基做成三杯基，配著台啤吃得酒足飯飽。','\
+一位男子出現在'+pl+'的眼前，他說「辛苦你能來到這裡呢，接下來就由我默兒陪你繼續踏上旅途吧。」\n你的靈感忽然過了，用了百米25秒的速度逃離了默兒。'];
+  
+  if(stage==3)rplyArr = ['\
+「cc(2)<=1 古小蜜學」「(1D100<=1) → 46、96、16 → 16 → 失敗」'+pl+'看到一群人說著你不懂的語言。\n你露出了輕蔑的微笑說「cc(2)<=1 請問佑我！」\n「(1D100<=1) → 21、1、91 → 1 → 恭喜！大成功！」\n區區2.7%的機率對天選之人算得了什麼，你揚長而去。','\
+一頭巨大的，頭上寫著「大家的小三」的倉鼠出現在'+pl+'的眼前，他說：「你怎麼會玩這個一點意義都沒有的無聊遊戲？聽話，乖，回去吃你的飯備你的團寫你的程式背你的英文單字好好的過你的生活，放棄入幫測驗吧。」\n你不慌不忙的拿出line keep，倉鼠就一邊哭一邊拖著行李箱離家出走了。\
+'];
+  
   return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 }
         
-function YababangB(){
-  let rplyArr = ['失敗！','失敗哭哭！'];
+function YababangB(stage,pl){
+  let rplyArr = ['失敗！\n','失敗哭哭！\n'];
+  
+  if(stage==1)rplyArr = ['\
+「口桀口桀口桀，沒有大捏捏的人是無法通過我言青問這一關的。」請問站在通往下一關的通道前對著你這樣說。\n'+pl+'抓了抓頭，請問覺得你抓頭的樣子很像猴子，於是用慘絕人寰的方式殺害了你。','\
+你看到一個牌子寫著測驗入口，鴨霸幫的傳統測驗第一關就是攀登末日火山，穿越幽暗水道，戰勝九頭蜥蜴，並且躍過無底深淵。\n'+pl+'奮勇的接受挑戰，但是在和九頭蜥蜴PK脫衣麻將的時候輸到連內褲都不剩了。\
+'];
+  
+  if(stage==2)rplyArr = ['\
+「科科科，沒想到你能走到這裡，不過也到極限了，接下來就讓柯基來當你的對手吧！」一群柯基科科科的叫著撲了上去。\n'+pl+'的line群頁面充斥著柯基的貼圖，從此你看到柯基的line貼圖都會喚起現在的心靈創傷。','\
+一位男子出現在'+pl+'的眼前，他說「辛苦你能來到這裡呢，接下來就由我默兒陪你繼續踏上旅途吧。」\n你與默兒踏上了旅途之後，不知為何敵人的攻擊總是落到了你的身上，漸漸的你也失去了繼續前進的力量，倒在了不知名的路上。'];
+  
+  if(stage==3)rplyArr = ['\
+「cc(2)<=1 古小蜜學」「(1D100<=1) → 46、96、16 → 16 → 失敗」'+pl+'看到一群人說著你不懂的語言。\n當你正準備逃跑的時候他們忽然衝了上來，口吐褻瀆的語句：\n「cc(2)<=10 請問學」「cc(2)<=10 柯基學」「cc(2)<=10 ㄌㄌ學」將你淹沒了。','\
+一頭巨大的，頭上寫著「大家的小三」的倉鼠出現在'+pl+'的眼前，他說：「你怎麼會玩這個一點意義都沒有的無聊遊戲？聽話，乖，回去吃你的飯備你的團寫你的程式背你的英文單字好好的過你的生活，放棄入幫測驗吧。」\n看著倉鼠柔軟的毛皮和水靈靈的大眼睛，你的鬥志全消，覺得自己被掰彎了。\
+  '];
+  
   return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
 }
-   

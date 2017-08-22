@@ -98,6 +98,9 @@ function parseInput(rplyToken, inputStr) {
         //cc判定在此
         if (inputStr.toLowerCase().match(/^cc/)!= null) return CoC7th(inputStr.toLowerCase()) ;      
         else
+        //入幫測驗判定在此
+        if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
+        else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
         else
@@ -743,3 +746,49 @@ wwwwwwwwwwwwwwwww', '\
   }
 
 }
+
+function Yababang(inputStr) {
+  let rplyArr = inputStr.split(' ');
+  let pl = rplyArr[1];
+  if (rplyArr.length == 1) return '想要挑戰入幫測驗，就把格式打好啊幹！';
+  
+  //開始迴圈部分
+  
+  let stage = 1;
+  let DeadOrNot = 0;
+  let pinch = 80;
+  let reply = '本次入幫測驗挑戰者是【' + pl + '】，鴨霸幫萬歲！\n';
+  
+  for (; DeadOrNot == 0; stage++){
+  reply = reply + '\n' + pl+'挑戰第' + stage +'關' ;
+    
+    if(Dice(100) <= pinch){
+      reply = reply +'(' + pinch + '):' + YababangG();
+      pinch = pinch - Dice(10);
+    }
+    else {
+      reply = reply +'(' + pinch + '):' + YababangB();
+      DeadOrNot = 1;
+      reply = reply + '\n\n勝敗乃兵家常事，大俠請重新來過吧。\n或者你可以直接月付1999加入白銀幫眾。';
+    }
+    
+    if (stage ==5 && DeadOrNot == 0) {
+    DeadOrNot = 2 ;    
+    }
+  }
+  
+    if (DeadOrNot == 2) reply = reply + '\n\n恭喜【'+pl+'】成功存活，成為新一代的鴨霸幫幫眾。\n請到隔壁的櫃檯繳納會費，然後期待下一次淨灘的時候你還可以存活下來。';
+      
+  return reply;
+}
+        
+function YababangG(){
+  let rplyArr = ['成功！','成功了幹！'];
+  return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+}
+        
+function YababangB(){
+  let rplyArr = ['失敗！','失敗哭哭！'];
+  return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
+}
+   

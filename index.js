@@ -760,7 +760,7 @@ function Yababang(inputStr) {
   
   let stage = 1;
   let DeadOrNot = 0;
-  let pinch = 80;
+  let pinch = 60;
   let reply = '本次入幫測驗挑戰者是【' + pl + '】，鴨霸幫萬歲！';
   
   for (; DeadOrNot == 0; stage++){

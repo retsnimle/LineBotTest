@@ -132,7 +132,24 @@ function SendImg(rplyToken, inputStr) {
     chack: ['大家的小三','大家的小3'],
     img: ['https://i.imgur.com/dKW2EJb.png']
     //Pimg: ['https://i.imgur.com/dKW2EJb.png']
+  },
+  {
+    chack: ['問號黑人','黑人問號','尼哥問號','問號尼哥','尼格問號','問號尼格'],
+    img: ['https://i.imgur.com/cUR20OZ.png']
+  },
+  {
+    chack: ['貴圈真亂'],
+    img: ['https://i.imgur.com/PalRocR.png']
+  },
+  {
+    chack: ['怕'],
+    img: ['https://i.imgur.com/qXGsztE.png']
+  },
+  {
+    chack: ['你要享受這個過程','妳要享受這個過程'],
+    img: ['https://i.imgur.com/mt7NVzr.png','https://i.imgur.com/v094wOd.png','https://i.imgur.com/F5RfDW2.png','https://i.imgur.com/jWm6f6z.png']
   }
+
   ]
   
   for ( i=0 ; i < message.length ; i ++){

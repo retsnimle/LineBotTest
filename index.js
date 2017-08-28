@@ -100,7 +100,7 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
         else
         //圖片訊息在此
-        if (inputStr.toLowerCase().match('.jpg') != null || inputStr.toLowerCase().match('.gif') != null) return SendImg(rplyToken, inputStr) ;      
+        if (inputStr.toLowerCase().match('.jpg') != null) return SendImg(rplyToken, inputStr) ;      
         else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      

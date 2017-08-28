@@ -100,7 +100,7 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
         else
         //圖片訊息在此
-        if (inputStr.match('.jpg') != null) return SendImg(rplyToken, inputStr) ;      
+        if (inputStr.toLowerCase().match('.jpg') != null || inputStr.toLowerCase().match('.gif') != null) return SendImg(rplyToken, inputStr) ;      
         else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
@@ -118,9 +118,15 @@ function parseInput(rplyToken, inputStr) {
 function SendImg(rplyToken, inputStr) {
      let message = [
   {
-    chack: ['離家出走'],
-    img: ['https://i.imgur.com/FItqGSH.jpg']
-  }
+    chack: ['想相離家出走','阿想離家出走'],
+    Oimg: ['https://i.imgur.com/FItqGSH.jpg'],
+    Ping: ['https://i.imgur.com/FItqGSH.jpg']
+  },
+  {
+    chack: ['我什麼都沒有'],
+    Oimg: ['https://i.imgur.com/YWuTfWP.gif'],
+    Ping: ['https://i.imgur.com/YWuTfWP.gif']
+  }     
   ]
   
   for ( i=0 ; i < message.length ; i ++){
@@ -129,8 +135,10 @@ function SendImg(rplyToken, inputStr) {
          let rplyVal = [
            {
             type: "image", 
-            originalContentUrl: message[i].img[Dice(message[i].img.length)-1], 
-            previewImageUrl: message[i].img[Dice(message[i].img.length)-1]
+            //originalContentUrl: message[i].img[Dice(message[i].img.length)-1], 
+            //previewImageUrl: message[i].img[Dice(message[i].img.length)-1]
+            originalContentUrl: message[i].Oimg[0], 
+            previewImageUrl: message[i].Pimg[0]
            }
          ]
          SendMsg(rplyToken, rplyVal);

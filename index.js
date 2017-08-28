@@ -148,6 +148,14 @@ function SendImg(rplyToken, inputStr) {
   {
     chack: ['你要享受這個過程','妳要享受這個過程'],
     img: ['https://i.imgur.com/mt7NVzr.png','https://i.imgur.com/v094wOd.png','https://i.imgur.com/F5RfDW2.png','https://i.imgur.com/jWm6f6z.png']
+  },
+  {
+    chack: ['我覺得不行'],
+    img: ['https://i.imgur.com/zXvsvJf.png','https://i.imgur.com/U1AK4kL.png','https://i.imgur.com/4TClOgY.png']
+  },
+  {
+    chack: ['我覺得可以','我覺得其實可以'],
+    img: ['https://i.imgur.com/K5WsXso.png']
   }
 
   ]

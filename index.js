@@ -116,8 +116,32 @@ function parseInput(rplyToken, inputStr) {
 }
 
 function SendImg(rplyToken, inputStr) {
-  let rplyVal = [{type: "image", originalContentUrl: "https://i.imgur.com/J5KkK6t.png", previewImageUrl: "https://i.imgur.com/J5KkK6t.png"}]
-   SendMsg(rplyToken, rplyVal);
+     let message = [
+  {
+    chack: ['離家出走'],
+    img: ['https://i.imgur.com/FItqGSH.jpg']
+  }
+  ]
+  
+  for ( i=0 ; i < message.length ; i ++){
+    for ( j=0 ; j < message[i].chack.length ; j ++){
+      if (inputStr.toLowerCase().match(message[i].chack[j]) != null) {
+         let rplyVal = [
+           {
+            type: "image", 
+            originalContentUrl: message[i].img[Dice(message[i].img.length)-1], 
+            previewImageUrl: message[i].img[Dice(message[i].img.length)-1]
+           }
+         ]
+         SendMsg(rplyToken, rplyVal);
+         return undefined;
+      }
+    }
+    
+  }
+  
+  
+
   return undefined;
 }
 

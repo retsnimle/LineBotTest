@@ -119,8 +119,8 @@ function SendImg(rplyToken, inputStr) {
      let message = [
   {
     chack: ['想相離家出走','阿想離家出走'],
-    Oimg: ['https://i.imgur.com/FItqGSH.jpg'],
-    Ping: ['https://i.imgur.com/FItqGSH.jpg']
+    Oimg: 'https://i.imgur.com/FItqGSH.jpg',
+    Ping: 'https://i.imgur.com/FItqGSH.jpg'
   }
   //,
   //{
@@ -138,8 +138,8 @@ function SendImg(rplyToken, inputStr) {
             type: "image", 
             //originalContentUrl: message[i].img[Dice(message[i].img.length)-1], 
             //previewImageUrl: message[i].img[Dice(message[i].img.length)-1]
-            originalContentUrl: message[i].Oimg[0], 
-            previewImageUrl: message[i].Pimg[0]
+            originalContentUrl: message[i].Oimg, 
+            previewImageUrl: message[i].Pimg
            }
          ]
          SendMsg(rplyToken, rplyVal);

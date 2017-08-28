@@ -121,12 +121,13 @@ function SendImg(rplyToken, inputStr) {
     chack: ['想相離家出走','阿想離家出走'],
     Oimg: ['https://i.imgur.com/FItqGSH.jpg'],
     Ping: ['https://i.imgur.com/FItqGSH.jpg']
-  },
-  {
-    chack: ['我什麼都沒有'],
-    Oimg: ['https://i.imgur.com/YWuTfWP.gif'],
-    Ping: ['https://i.imgur.com/YWuTfWP.gif']
-  }     
+  }
+  //,
+  //{
+  //  chack: ['我什麼都沒有'],
+  //  Oimg: ['https://i.imgur.com/YWuTfWP.gif'],
+  //  Ping: ['https://i.imgur.com/YWuTfWP.gif']
+  //}     
   ]
   
   for ( i=0 ; i < message.length ; i ++){

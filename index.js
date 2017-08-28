@@ -120,18 +120,18 @@ function SendImg(rplyToken, inputStr) {
      let message = [
   {
     chack: ['想相離家出走','阿想離家出走'],
-    Oimg: ['https://i.imgur.com/FItqGSH.jpg'],
-    Pimg: ['https://i.imgur.com/FItqGSH.jpg']
+    img: ['https://i.imgur.com/FItqGSH.jpg']
+    //Pimg: ['https://i.imgur.com/FItqGSH.jpg']
   },
   {
     chack: ['我什麼都沒有'],
-    Oimg: ['https://i.imgur.com/k4QE5Py.png'],
-    Pimg: ['https://i.imgur.com/k4QE5Py.png']
+    img: ['https://i.imgur.com/k4QE5Py.png']
+    //Pimg: ['https://i.imgur.com/k4QE5Py.png']
   },
   {
     chack: ['大家的小三','大家的小3'],
-    Oimg: ['https://i.imgur.com/dKW2EJb.png'],
-    Pimg: ['https://i.imgur.com/dKW2EJb.png']
+    img: ['https://i.imgur.com/dKW2EJb.png']
+    //Pimg: ['https://i.imgur.com/dKW2EJb.png']
   }
   ]
   
@@ -141,8 +141,9 @@ function SendImg(rplyToken, inputStr) {
          let rplyVal = [
            {
             type: "image", 
-            originalContentUrl: message[i].Oimg[Dice(message[i].img.length)-1], 
-            previewImageUrl: message[i].Pimg[Dice(message[i].img.length)-1]
+            originalContentUrl: message[i].img[Dice(message[i].img.length)-1], 
+            //previewImageUrl: message[i].Pimg[Dice(message[i].Pimg.length)-1]
+            previewImageUrl: message[i].img[Dice(message[i].img.length)-1]
            }
          ]
          SendMsg(rplyToken, rplyVal);

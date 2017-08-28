@@ -523,9 +523,7 @@ function YabasoReply(inputStr) {
     }
     return '我想想喔……我覺得，' + Answer + '。';
   }
-  else  
-    
-    
+ 
  //以下是幫眾限定的垃圾話
     let message = [
       {
@@ -673,7 +671,6 @@ function YabasoReply(inputStr) {
           return message[i].text[Dice(message[i].text.length)-1];
         }
       }
-
     }
     
   //以下是運勢功能

@@ -99,6 +99,9 @@ function parseInput(rplyToken, inputStr) {
         //入幫測驗判定在此
         if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
         else
+        //圖片訊息在此
+        if (inputStr.match('.jpg') != null) return SendImg(rplyToken, inputStr) ;      
+        else
         //pbta判定在此
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
         else
@@ -110,8 +113,35 @@ function parseInput(rplyToken, inputStr) {
         //鴨霸獸指令開始於此
         if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
         else return undefined;
-        
-      }
+}
+
+function SendImg(rplyToken, inputStr) {
+  let rplyVal = [{type: "image", originalContentUrl: "https://i.imgur.com/J5KkK6t.png", previewImageUrl: "https://i.imgur.com/J5KkK6t.png"}]
+   SendMsg(rplyToken, rplyVal);
+  return undefined;
+}
+
+function SendMsg(rplyToken, rplyVal) {
+  let rplyObj = {
+    replyToken: rplyToken,
+    messages: rplyVal
+  }
+
+  let rplyJson = JSON.stringify(rplyObj); 
+  
+  var request = https.request(options, function(response) {
+    console.log('Status: ' + response.statusCode);
+    console.log('Headers: ' + JSON.stringify(response.headers));
+    response.setEncoding('utf8');
+    response.on('data', function(body) {
+      console.log(body); 
+    });
+  });
+  request.on('error', function(e) {
+    console.log('Request error: ' + e.message);
+  })
+  request.end(rplyJson);
+}
 
 
         

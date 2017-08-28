@@ -100,7 +100,7 @@ function parseInput(rplyToken, inputStr) {
         if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
         else
         //圖片訊息在此
-        if (inputStr.toLowerCase().match('.jpg') != null || inputStr.toLowerCase().match('.gif') != null) return SendImg(rplyToken, inputStr) ;      
+        if (inputStr.toLowerCase().match('.jpg') != null) return SendImg(rplyToken, inputStr) ;      
         //if (inputStr.match('.jpg') != null) return SendImg(rplyToken, inputStr) ;      
         else
         //pbta判定在此
@@ -125,8 +125,8 @@ function SendImg(rplyToken, inputStr) {
   },
   {
     chack: ['我什麼都沒有'],
-    Oimg: ['https://i.imgur.com/YWuTfWP.gif'],
-    Pimg: ['https://i.imgur.com/YWuTfWP.gif']
+    Oimg: ['https://i.imgur.com/k4QE5Py.png'],
+    Pimg: ['https://i.imgur.com/k4QE5Py.png']
   }     
   ]
   

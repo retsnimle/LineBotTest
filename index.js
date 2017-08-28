@@ -12,8 +12,6 @@ var options = {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    //無限巴獸
-    //'Authorization': 'Bearer clKhNpvJvd4ifWzx0mXWshAlnzEHY9JhMBcxM6kJLghlj+A9uIxSNI1xXxFBtCfTZvr6DcSDUdt/8tLEcgr55ugvWEriHkqt04kML02hm4yEJ1Eym7WZWWbq3hrzhb0S41PCFmvCji7EgsToaR8QFAdB04t89/1O/w1cDnyilFU='
     //新無限巴獸
     'Authorization': 'Bearer N5nOPFYb0S61vE2By6PBSDZkHvh0ssvnHuC3sYugu26BiZjsDLv1lqK2XSBsOhVVUl4hoAKu1b9vBU6X9bMVvWcw9ENcx/WySkN7Rsf8oaJuaUPvzS2aJyMom7Ww34LYQEj6YH4p1/JvM5HW0MyddAdB04t89/1O/w1cDnyilFU='
     
@@ -528,171 +526,155 @@ function YabasoReply(inputStr) {
   else  
     
     
-  //以下是幫眾限定的垃圾話
-    if(inputStr.match('李孟儒') != null) {
-      let rplyArr=['\
-祂是電，祂是光，祂是唯一的神話。', '\
-太初有道，道與李孟儒同在——道就是李孟儒。', '\
-李孟儒說，要有光，就有了光。李孟儒看光是好的，就把光和暗分開。', '\
-起初，李孟儒創造天地。地是空虛渾沌，淵面黑暗，李孟儒的靈運行在水面上。' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else  
-    
-  if(inputStr.match('泰') != null||inputStr.match('ㄩㄊ') != null||inputStr.match('太太') != null) {
-      let rplyArr=['\
-（抱頭）嗚噁噁噁噁噁頭好痛…', '\
-你說什麼……嗚嗚……不要提這個QQ', '\
-哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('超進化') != null) return '超霸獸超進化～～超級機霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
-  else  
-  if(inputStr.match('進化') != null) return '鴨霸獸進化～～超霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）';
-  else  
-  if(inputStr.match('拔嘴') != null) {
-    let rplyArr=['\
-傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。', '\
-拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
-在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。', '\
-可以的可以的，隨意隨意；反正機械鴨霸獸的嘴是拋棄式的。', '\
-人類每花60秒拔嘴，就減少一分鐘的壽命。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-    if(inputStr.match('鬼屋') != null) {
-      let rplyArr=['\
-我還是覺得鬼屋不適合新手KP啦！', '\
-誰再說鬼屋適合新手KP的我就（ry', '\
-神說，你們誰開過鬼屋的，都可以拿石頭打他。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-    else
-  if(inputStr.match('路過') != null) {
-    let rplyArr=['\
-我的+9火把呢？'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else  
-  if(inputStr.match('約翰希南') != null||inputStr.match('江西') != null) {
-      let rplyArr=['\
-HIS NAME IS~~~~江～～～西哪～～～～（登等愣～登！！！登瞪愣登！！！）', '\
-江江江江，有一條江耶，來跳江好了。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('三小') != null) {
-      let rplyArr=['\
-幫主你也敢嘴。', '\
-不要起爭議啦！', '\
-你在大聲什麼啦！'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else  
-  if(inputStr.match('鴨霸幫') != null) return '要加入鴨霸幫是沒有這麼容易的，你必須經過重重考驗，攀登過末日火山，穿越過幽暗水道，戰勝九頭蜥蜴，並且躍過無底深淵。\n\n\n或者你也可以選擇月付１９９９成為白銀幫眾。現在加入前三個月還打八折喔。';
-  else
-  if(inputStr.match('阿想') != null) {
-  let rplyArr=['\
-男的，也可以。', '\
-還好我中壢山蟑螂沒講錯。'];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else
-  if(inputStr.match('愛') != null) return '我是不會嗆你的，因為霸獸愛你。';
-  else
-  if(inputStr.match('哈哈哈') != null) return '你的銅鋰鋅咧？';
-  else
-  if(inputStr.match('狂') != null) return '948794狂，你有幫主狂？淨灘啦！';
-  else
-  if(inputStr.match('笑') != null) return '幫主笑阿笑，笑得你心底發寒。';
-  else
-  if(inputStr.match('家訪') != null) return 'ㄉㄅㄑ';
-  else
-  if(inputStr.match('饅頭') != null) return '可愛。';
-  else
-  if(inputStr.match('開司') != null) return '給開司一罐啤酒！';
-  else
-  if(inputStr.match('阿珠') != null) {
-    let rplyArr=['\
-怎麼跟妹妹結婚的方法？', '\
-太太，今晚是不是很寂寞？', '\
-以狗，得斯咩，呀妹帖', '\
-嘿嘿，小妹妹，一個人寂寞嗎？', '\
-男孩子，想上。', '\
-包夜3000', '\
-有種哈味。', '\
-不知道今天在誰床上呢？', '\
-路過說他已經(ry'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else  
-  if(inputStr.match('炸彈') != null) {
-      let rplyArr=['\
-野～格～炸～彈～', '\
-那你就帶著野格炸彈吧。', '\
-野、格、炸、彈，我、的、最、愛。' ];
-      return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-    }
-  else  
-  if(inputStr.match('864') != null||inputStr.match('巴魯斯') != null||inputStr.toLowerCase().match('sora') != null) {
-    let rplyArr=['\
-呃啊啊啊啊啊啊啊啊──！！！不對、我幹嘛要做反應？', '\
-阿，這是新的一天來臨的訊號。', '\
-バルス！', '\
-burrs！', '\
-Barış！', '\
-Bals！', '\
-Barusu！' ];
+ //以下是幫眾限定的垃圾話
+    let message = [
+      {
+        chack: ['泰','ㄩㄊ','太太'],
+        text: ['（抱頭）嗚噁噁噁噁噁頭好痛…',
+               '你說什麼……嗚嗚……不要提這個QQ',
+               '哈哈，你說什麼呢……啊啦，眼淚怎麼自己流下來了QQ']
+      },
+      {
+        chack: ['超進化'],
+        text: ['超霸獸超進化～～超級機霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）']
+      },
+      {
+        chack: ['進化'],
+        text: ['鴨霸獸進化～～超霸獸～～～\n（BGM：http://tinyurl.com/jjltrnt）']
+      },
+      {
+        chack: ['拔嘴'],
+        text: ['傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。', 
+               '拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)',
+               '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。',
+               '可以的可以的，隨意隨意；反正機械鴨霸獸的嘴是拋棄式的。',
+               '人類每花60秒拔嘴，就減少一分鐘的壽命。']
+      },
+      {
+        chack: ['鬼屋'],
+        text: ['我還是覺得鬼屋不適合新手KP啦！', 
+               '誰再說鬼屋適合新手KP的我就（ry',
+               '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。',
+               '神說，你們誰開過鬼屋的，都可以拿石頭打他。']
+      },
+      {
+        chack: ['約翰希南','江西'],
+        text: ['HIS NAME IS~~~~江～～～西哪～～～～（登等愣～登！！！登瞪愣登！！！）',
+               '江江江江，有一條江耶，來跳江好了。']
+      },
+      {
+        chack: ['三小'],
+        text: ['幫主你也敢嘴。', '不要起爭議啦！', '你在大聲什麼啦！']
+      },
+      {
+        chack: ['鴨霸幫'],
+        text: ['要加入鴨霸幫是沒有這麼容易的，你必須經過重重考驗，攀登過末日火山，穿越過幽暗水道，戰勝九頭蜥蜴，並且躍過無底深淵。\n\n\n或者你也可以選擇月付１９９９成為白銀幫眾。現在加入前三個月還打八折喔。']
+      },
+      {
+        chack: ['阿想'],
+        text: ['男的，也可以。',
+               '還好我中壢山蟑螂沒講錯。']
+      },
+      {
+        chack: ['愛'],
+        text: ['我是不會嗆你的，因為霸獸愛你。']
+      },
+      {
+        chack: ['哈哈哈'],
+        text: ['你的銅鋰鋅咧？']
+      },
+      {
+        chack: ['狂'],
+        text: ['948794狂，你有幫主狂？淨灘啦！']
+      },
+      {
+        chack: ['笑'],
+        text: ['幫主笑阿笑，笑得你心底發寒。']
+      },
+      {
+        chack: ['家訪'],
+        text: ['ㄉㄅㄑ']
+      },
+      {
+        chack: ['饅頭'],
+        text: ['可愛。']
+      },
+      {
+        chack: ['開司'],
+        text: ['給開司一罐啤酒！']
+      },
+      {
+        chack: ['阿珠'],
+        text: ['有種哈味。', '不知道今天在誰床上呢？', '路過說他已經(ry']
+      },
+      {
+        chack: ['炸彈'],
+        text: ['野～格～炸～彈～', '那你就帶著野格炸彈吧。', '野、格、炸、彈，我、的、最、愛。' ]
+      },
+      {
+        chack: ['864','巴魯斯','sora'],
+        text: ['呃啊啊啊啊啊啊啊啊──！！！不對、我幹嘛要做反應？', '阿，這是新的一天來臨的訊號。', 'バルス！', 'burrs！', 'Barış！', 'Bals！', 'Barusu！' ]
+      },
+      {
+        chack: ['康青龍'],
+        text: ['淨灘之力與康青龍同在。']
+      },
+      {
+        chack: ['軒'],
+        text: ['這我一定吉。']
+      },
+      {
+        chack: ['肉食性猛擊'],
+        text: ['想試試嗎？（張嘴）']
+      },
+      {
+        chack: ['俊豪'],
+        text: ['錯誤導入，誤你一生。']
+      },
+      {
+        chack: ['豆腐'],
+        text: ['鴨霸獸不吃。']
+      },
+      {
+        chack: ['包子'],
+        text: ['幹你娘我最討厭的就是包子你還一直提一直提']
+      },
+      {
+        chack: ['鍋貼'],
+        text: ['十二顆一盒，鴨霸獸也不吃，而且無比憎恨它。']
+      },
+      {
+        chack: ['水餃'],
+        text: ['噁噁噁噁噁噁噁噁噁']
+      },
+      {
+        chack: ['蘿蔔'],
+        text: ['我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。']
+      },
+      {
+        chack: ['爪黃'],
+        text: ['痾痾痾你們死定了啦，不用在意那麼多。']
+      },
+      {
+        chack: ['私訊'],
+        text: ['噁噁噁幹好恐怖']
+      },
+      {
+        chack: ['黑熊'],
+        text: ['中壢李性閃亮的黑熊熊穿浴衣👘～混亂善娘的黑熊熊穿浴衣👘～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！',
+               '中壢，李性，閃亮（燦笑）', '混亂善娘（燦笑）', '黑熊熊穿浴衣👘～黑熊熊穿浴衣👘～耶嘿～', '黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了']
+      }
 
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];    
-    
-  }
-  else
-  if(inputStr.match('康青龍') != null) return '淨灘之力與康青龍同在。';
-  else
-  if(inputStr.match('軒') != null) return '這我一定吉。';
-  else
-  if(inputStr.match('肉食性猛擊') != null) return '想試試嗎？（張嘴）';
-  else
-  if(inputStr.match('俊豪') != null) return '錯誤導入，誤你一生。';
-  else
-  if(inputStr.match('豆腐') != null) return '鴨霸獸不吃。';
-  else
-  if(inputStr.match('包子') != null) return '幹你娘我最討厭的就是包子你還一直提一直提';
-  else
-  if(inputStr.match('鍋貼') != null||inputStr.match('煎餃') != null) return '十二顆一盒，鴨霸獸也不吃，而且無比憎恨它。';
-  else
-  if(inputStr.match('水餃') != null) return '噁噁噁噁噁噁噁噁噁';
-  else
-  if(inputStr.match('蘿蔔') != null) return '我說蘿蔔又白又正又嬌小好像可以抱起來轉；照片我有存，意者請私訊yabaso。';
-  else
-  if(inputStr.match('爪黃') != null) return '痾痾痾你們死定了啦，不用在意那麼多。';
-  else
-  if(inputStr.match('私訊') != null) return '噁噁噁幹好恐怖';
-  else
-  if(inputStr.match('黑熊') != null) {
-    let rplyArr=['\
-中壢李性閃亮的黑熊熊穿浴衣👘～混亂善娘的黑熊熊穿浴衣👘～耶嘿～\n黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了！', '\
-中壢，李性，閃亮（燦笑）', '\
-混亂善娘（燦笑）', '\
-黑熊熊穿浴衣👘～黑熊熊穿浴衣👘～耶嘿～', '\
-我是愛與正義的浴衣光之美少女，閃亮思巴叩！', '\
-黑熊醬這樣可愛的女孩，沒男朋友真是太不可思議了'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else
-  if(inputStr.match('鎮隆') != null||inputStr.match('龍星涼') != null) {
-    let rplyArr=['\
-我到現在還是很訝異，她還只是個14歲的少女阿。', '\
-我沒想過這種畫風鎮隆也會出手，雖然她外表很艷麗但他還是14歲少女。', '\
-吃了我的女兒我真的很震驚，我也不知道為什麼會驚訝這麼久。', '\
-我的女兒被吃了這件事，我到現在還是無法釋懷。', '\
-幹你這個騙子，竟然先走了。', '\
-我的女兒…她才14歲而已阿。'];
-    return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
-  }
-  else
+    ]
+
+    for ( i=0 ; i < message.length ; i ++){
+      for ( j=0 ; j < message[i].chack.length ; j ++){
+        if (inputStr.toLowerCase().match(message[i].chack[j]) != null) {
+          return message[i].text[Dice(message[i].text.length)-1];
+        }
+      }
+
+    }
     
   //以下是運勢功能
   if(inputStr.match('運勢') != null){
@@ -702,46 +684,46 @@ Barusu！' ];
   
   //沒有觸發關鍵字則是這個
   else{
-    let rplyArr = ['\
-你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？', '\
-在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。', '\
-嗚噁噁噁噁噁噁，不要隨便叫我。', '\
-幹，你這學不會的豬！', '\
-嘎嘎嘎。', '\
-wwwwwwwwwwwwwwwww', '\
-為什麼你們每天都可以一直玩；玩就算了還玩我。', '\
-好棒，整點了！咦？不是嗎？', '\
-不要打擾我挖坑！', '好棒，誤點了！', '\
-在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。', '\
-什麼東西你共三小。', '\
-哈哈哈哈哈哈哈哈！', '\
-一直叫，你4不4想拔嘴人家？', '\
-一直叫，你想被淨灘嗎？', '\
-幫主你也敢嘴？', '\
-拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)', '\
-看看我！！我體內的怪物已經這麼大了！！', '\
-傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。', '\
-人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。', '\
-嘴被拔，就會掉。', '\
-你在大聲什麼啦！！！！', '\
-公道價，八萬一（伸手）。', '\
-你的嘴裡有異音（指）', '\
-噓，安靜跑個團，很難？', '\
-斷！', '\
-在場沒有一個比我帥。', '\
-我不是針對你，我是說在場各位，都是垃圾。', '\
-你知道你很機掰嗎？', '\
-快 …扶我去喝酒 ……', '\
-好好好，下去領五百。', '\
-噁噁噁，躺著也中槍。', '\
-閃開，讓幫主來（脫衣服）。', '\
-現在放棄的話，假期就開始了。', '\
-努力不一定會成功，但是不努力的話，就會很輕鬆喔。', '\
-這種要求，我還是第一次聽到（啃咬）', '\
-你先承認你有病再說。', '\
-想被我切八段嗎臭婊子。', '\
-ｅｒｒｏｒ：齁，你把鴨霸獸弄壞了。準備迎接幫眾的怒火吧。', '\
-幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
+    let rplyArr = [
+      '你們死定了呃呃呃不要糾結這些……所以是在糾結哪些？',
+      '在澳洲，每過一分鐘就有一隻鴨嘴獸被拔嘴。 \n我到底在共三小。',
+      '嗚噁噁噁噁噁噁，不要隨便叫我。',
+      '幹，你這學不會的豬！',
+      '嘎嘎嘎。',
+      'wwwwwwwwwwwwwwwww',
+      '為什麼你們每天都可以一直玩；玩就算了還玩我。',
+      '好棒，整點了！咦？不是嗎？',
+      '不要打擾我挖坑！',
+      '好棒，誤點了！',
+      '在南半球，一隻鴨嘴獸拍打他的鰭，他的嘴就會掉下來。 \n我到底在共三小。',
+      '什麼東西你共三小。',
+      '哈哈哈哈哈哈哈哈！',
+      '一直叫，你4不4想拔嘴人家？',
+      '一直叫，你想被淨灘嗎？',
+      '幫主你也敢嘴？',
+      '拔嘴的話，我的嘴巴會長出觸手，然後開花成四個花瓣哦 (´×`)',
+      '看看我！！我體內的怪物已經這麼大了！！',
+      '傳說中，凡是拔嘴過鴨嘴獸的人，有高機率在100年內死去。 \n我到底在共三小。',
+      '人類每花60秒拔嘴，就減少一分鐘的壽命。 \n我到底在共三小。',
+      '嘴被拔，就會掉。',
+      '你在大聲什麼啦！！！！',
+      '公道價，八萬一（伸手）。',
+      '你的嘴裡有異音（指）', 
+      '噓，安靜跑個團，很難？',
+      '斷！',
+      '在場沒有一個比我帥。',
+      '我不是針對你，我是說在場各位，都是垃圾。',
+      '你知道你很機掰嗎？',
+      '快 …扶我去喝酒 ……',
+      '好好好，下去領五百。',
+      '噁噁噁，躺著也中槍。',
+      '現在放棄的話，假期就開始了。',
+      '努力不一定會成功，但是不努力的話，就會很輕鬆喔。',
+      '這種要求，我還是第一次聽到（啃咬）',
+      '你先承認你有病再說。',
+      '想被我切八段嗎臭婊子。',
+      'ｅｒｒｏｒ：齁，你把鴨霸獸弄壞了。準備迎接幫眾的怒火吧。',
+      '幫主說，有人打你的左臉，你就要用肉食性猛擊咬斷他的小腿。'];
     return rplyArr[Math.floor((Math.random() * (rplyArr.length)) + 0)];
   }
 

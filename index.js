@@ -125,8 +125,8 @@ function SendImg(rplyToken, inputStr) {
   },
   {
     chack: ['我什麼都沒有'],
-    Oimg: ['https://i.imgur.com/YWuTfWP.gifv'],
-    Pimg: ['https://i.imgur.com/YWuTfWPt.gif']
+    Oimg: ['https://i.imgur.com/YWuTfWP.gif'],
+    Pimg: ['https://i.imgur.com/YWuTfWP.gif']
   }     
   ]
   

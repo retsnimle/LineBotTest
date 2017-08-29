@@ -156,6 +156,10 @@ function SendImg(rplyToken, inputStr) {
   {
     chack: ['我覺得可以','我覺得其實可以'],
     img: ['https://i.imgur.com/K5WsXso.png']
+  },
+  {
+    chack: ['警察','就是這個人'],
+    img: ['https://i.imgur.com/7BTPpPQ.png','https://i.imgur.com/nweWacp.png','https://i.imgur.com/j0hIscH.png','https://i.imgur.com/9BDCkJr.png','https://i.imgur.com/2ZiVw9g.png']
   }
 
   ]

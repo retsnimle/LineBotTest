@@ -154,6 +154,10 @@ function SendImg(rplyToken, inputStr) {
   {
     chack: ['true story','真實故事'],
     img: ['https://i.imgur.com/88MiBLA.png']
+  },
+  {
+    chack: ['一槍'],
+    img: ['https://i.imgur.com/FnmSMWq.png']
   }
 
 

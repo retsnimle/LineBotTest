@@ -134,7 +134,28 @@ function SendImg(rplyToken, inputStr) {
   {
     chack: ['警察','就是這個人'],
     img: ['https://i.imgur.com/7BTPpPQ.png','https://i.imgur.com/nweWacp.png','https://i.imgur.com/j0hIscH.png','https://i.imgur.com/9BDCkJr.png','https://i.imgur.com/2ZiVw9g.png']
+  },
+  {
+    chack: ['姆米','姆咪','母米'],
+    img: ['https://i.imgur.com/j7bMpAO.png','https://i.imgur.com/0AatpWN.png','https://i.imgur.com/S69OoYS.png','https://i.imgur.com/kEGB0Vj.png']
+  },
+  {
+    chack: ['take my money','shut up and'],
+    img: ['https://i.imgur.com/UX0OUc0.png']
+  },
+  {
+    chack: ['接受挑戰','challenge'],
+    img: ['https://i.imgur.com/uUwcxtj.png']
+  },
+  {
+    chack: ['成龍'],
+    img: ['https://i.imgur.com/cq0WGxH.png']
+  },
+  {
+    chack: ['true story','真實故事'],
+    img: ['https://i.imgur.com/88MiBLA.png']
   }
+
 
   ]
   

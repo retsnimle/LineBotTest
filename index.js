@@ -244,18 +244,8 @@ function parseInput(rplyToken, inputStr) {
         //pbta系統判定在此，關鍵字是「句首的pb」。
         if (inputStr.toLowerCase().match(/^pb/)!= null) return pbta(inputStr.toLowerCase()) ;      
         else
-          
-        //通用擲骰判定在此，這邊的判定比較寬鬆。
-        //第一部分的 \w 代表「包括底線的任何單詞字元」，所以兩個部份的意涵就是：
-        //「不是全部都是空白或中文字，而且裡面含有d的訊息」都會觸發這個判定。
-        //為了要正確運作，剩下的判定式還有很多，寫在這邊太冗長所以擺在nomalDiceRoller裡面了。
-        if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
-          return nomalDiceRoller(inputStr);
-        }
-
-        else 
-
-	//這幾個是偏向玩鬧型的功能，如果說只是要擲骰可以不管。
+		
+	//這三個是偏向玩鬧型的功能，如果說只是要擲骰可以不管。
         //鴨霸獸指令開始於此
         if (inputStr.match('鴨霸獸') != null) return YabasoReply(inputStr) ;
         else
@@ -266,6 +256,17 @@ function parseInput(rplyToken, inputStr) {
           
         //入幫測驗功能判定在此
         if (inputStr.match('鴨霸幫入幫測驗') != null) return Yababang(inputStr) ;      
+        else 
+		
+	//通用擲骰判定在此，這邊的判定比較寬鬆。
+        //第一部分的 \w 代表「包括底線的任何單詞字元」，所以兩個部份的意涵就是：
+        //「不是全部都是空白或中文字，而且裡面含有d的訊息」都會觸發這個判定。
+        //為了要正確運作，剩下的判定式還有很多，寫在這邊太冗長所以擺在nomalDiceRoller裡面了。
+	//為什麼判定要放最後呢，不然只要有d都會被當成這個，很不方便
+        if (inputStr.match(/\w/)!=null && inputStr.toLowerCase().match(/d/)!=null) {
+          return nomalDiceRoller(inputStr);
+        }
+
         else return undefined;
         
 }
